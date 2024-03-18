@@ -3,6 +3,7 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/features/table/presentation/widgets/court_widget.dart';
 import 'package:flutter/material.dart';
 
 class TablePage extends StatefulWidget {
@@ -25,6 +26,30 @@ class _TablePageState extends State<TablePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Center();
+    return Container(
+      color: Colors.white,
+      child: const Row(
+        children: [
+          Expanded(
+            child: CourtWidget(),
+          ),
+          Expanded(
+            child: CourtWidget(),
+          ),
+          Expanded(
+            child: CourtWidget(),
+          ),
+          Expanded(
+            child: CourtWidget(),
+          ),
+          Expanded(
+            child: CourtWidget(),
+          ),
+          Expanded(
+            child: CourtWidget(),
+          ),
+        ],
+      ),
+    );
   }
 }

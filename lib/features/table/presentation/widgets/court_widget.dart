@@ -1,0 +1,47 @@
+import 'package:blumenau/features/table/domain/entities/schedule.dart';
+import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+
+class CourtWidget extends StatelessWidget {
+  const CourtWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text(
+          "Court #1",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black12,
+          ),
+        ),
+        Expanded(
+          child: SfCalendar(
+            headerHeight: 0,
+            viewHeaderHeight: 0,
+            view: CalendarView.day,
+            firstDayOfWeek: DateTime.now().weekday,
+            dataSource: Schedule([]),
+            headerStyle: const CalendarHeaderStyle(
+                textStyle: TextStyle(color: Colors.white, fontSize: 20),
+                textAlign: TextAlign.center,
+                backgroundColor: Colors.green),
+            onTap: (CalendarTapDetails details) {},
+            minDate: DateTime(DateTime.now().year, DateTime.now().month,
+                DateTime.now().day, DateTime.now().hour + 1, 0, 0),
+            maxDate: DateTime(DateTime.now().year, DateTime.now().month,
+                DateTime.now().day, 22, 0, 0),
+            timeSlotViewSettings: const TimeSlotViewSettings(
+                timeFormat: 'HH:mm',
+                startHour: 8,
+                endHour: 22,
+                nonWorkingDays: <int>[]),
+          ),
+        ),
+      ],
+    );
+  }
+}

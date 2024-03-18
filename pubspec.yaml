@@ -15,6 +15,9 @@ dependencies:
   dartz: ^0.10.1
   get_it: ^7.6.7
   shared_preferences: ^2.2.2
+  syncfusion_flutter_calendar: ^25.1.35
+  syncfusion_localizations: ^25.1.35
+  syncfusion_flutter_datagrid: ^25.1.35
 
 dev_dependencies:
   flutter_test:
