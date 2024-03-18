@@ -4,6 +4,7 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/injection/core_container.dart';
+import 'package:blumenau/core/literals/literals.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/pages/table_page.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,10 @@ class BlumenauAppState extends State<BlumenauApp> {
         BlocProvider<TableBloc>(
             create: (BuildContext context) => core<TableBloc>()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        title: Literals.appName,
         debugShowCheckedModeBanner: false,
-        home: TablePage(),
+        home: const TablePage(),
       ),
     );
   }
