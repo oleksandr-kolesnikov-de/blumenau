@@ -32,7 +32,8 @@ class BlumenauAppState extends State<BlumenauApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TableBloc>(
-            create: (BuildContext context) => core<TableBloc>()),
+            create: (BuildContext context) =>
+                core<TableBloc>()..add(LoadScheduleTableEvent())),
       ],
       child: MaterialApp(
         title: Literals.appName,

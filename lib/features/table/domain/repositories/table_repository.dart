@@ -3,23 +3,10 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-part of 'table_bloc.dart';
+import 'package:blumenau/core/error/failure.dart';
+import 'package:blumenau/features/table/domain/entities/schedule.dart';
+import 'package:dartz/dartz.dart';
 
-abstract class TableState extends Equatable {
-  const TableState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class TableInitialState extends TableState {}
-
-class TableLoadingState extends TableState {}
-
-class TableErrorState extends TableState {}
-
-class TableLoadedState extends TableState {
-  final Schedule schedule;
-
-  const TableLoadedState(this.schedule);
+abstract class TableRepository {
+  Future<Either<Failure, Schedule>> loadSchedule();
 }
