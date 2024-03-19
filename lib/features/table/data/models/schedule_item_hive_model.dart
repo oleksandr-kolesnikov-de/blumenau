@@ -3,12 +3,24 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'package:blumenau/core/error/failure.dart';
-import 'package:blumenau/features/table/domain/entities/schedule.dart';
-import 'package:dartz/dartz.dart';
+import 'package:hive/hive.dart';
 
-abstract class TableRepository {
-  Future<Either<Failure, Schedule>> loadSchedule();
-  Future<Either<Failure, bool>> addEntry(
-      String pinCode, DateTime startTime, DateTime endTime);
+part 'schedule_item_hive_model.g.dart';
+
+@HiveType(typeId: 0)
+class ScheduleItemHiveModel {
+  @HiveField(0)
+  late String title;
+
+  @HiveField(1)
+  late DateTime startTime;
+
+  @HiveField(2)
+  late DateTime endTime;
+
+  ScheduleItemHiveModel({
+    required this.title,
+    required this.startTime,
+    required this.endTime,
+  });
 }

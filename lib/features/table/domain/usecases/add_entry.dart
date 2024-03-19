@@ -3,23 +3,28 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-part of 'table_bloc.dart';
+import 'package:blumenau/core/error/failure.dart';
+import 'package:blumenau/core/use_case/use_case.dart';
+import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
+import 'package:dartz/dartz.dart';
 
-abstract class TableEvent extends Equatable {
-  const TableEvent();
+class AddEntry implements UseCase<bool, AddEntryParams> {
+  final TableRepository repository;
+
+  AddEntry(this.repository);
+
   @override
-  List<Object> get props => [];
+  Future<Either<Failure, bool>> call(AddEntryParams params) async {
+    return await repository.addEntry(
+        params.pinCode, params.startTime, params.endTime);
+  }
 }
 
-class LoadScheduleTableEvent extends TableEvent {}
-
-class AddEntryTableEvent extends TableEvent {
+class AddEntryParams {
   final String pinCode;
   final DateTime startTime;
   final DateTime endTime;
 
-  const AddEntryTableEvent(
+  AddEntryParams(
       {required this.pinCode, required this.startTime, required this.endTime});
-  @override
-  List<Object> get props => [pinCode, startTime, endTime];
 }
