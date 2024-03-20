@@ -15,4 +15,6 @@ abstract class TableRepository {
   Future<Either<Failure, List<Court>>> loadCourts();
   Future<Either<Failure, bool>> addEntry(
       String courtKey, String pinCode, DateTime startTime, DateTime endTime);
+  Future<Either<Failure, bool>> deleteEntry(
+      String courtKey, String pincode, String key);
 }

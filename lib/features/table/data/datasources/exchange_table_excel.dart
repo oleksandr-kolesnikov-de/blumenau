@@ -29,7 +29,7 @@ class ExchangeTableExcelImpl implements ExchangeTableExcel {
         CourtModel(name: "Court 4", key: "court4"),
       ]));
     } catch (e) {
-      return Future.value(Left(ServerFailure()));
+      return Future.value(Left(HiveFailure()));
     }
   }
 }

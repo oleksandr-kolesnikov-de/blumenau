@@ -18,6 +18,7 @@ abstract class ExchangeTableHive {
   Future<Either<Failure, String>> retryPin(String pinCode);
   Future<Either<Failure, void>> addEntry(
       String courtKey, ScheduleItemHiveModel scheduleItemIsarModel);
+  Future<Either<Failure, void>> deleteEntry(String courtKey, String key);
 }
 
 class ExchangeTableHiveImpl implements ExchangeTableHive {
@@ -31,7 +32,7 @@ class ExchangeTableHiveImpl implements ExchangeTableHive {
       List<dynamic> allRecords = box.values.toList();
       return Future.value(Right(allRecords.cast<ScheduleItemHiveModel>()));
     } catch (e) {
-      return Future.value(Left(ServerFailure()));
+      return Future.value(Left(HiveFailure()));
     }
   }
 
@@ -40,7 +41,7 @@ class ExchangeTableHiveImpl implements ExchangeTableHive {
     try {
       return Future.value(const Right("Some player"));
     } catch (e) {
-      return Future.value(Left(ServerFailure()));
+      return Future.value(Left(HiveFailure()));
     }
   }
 
@@ -49,10 +50,21 @@ class ExchangeTableHiveImpl implements ExchangeTableHive {
       String courtKey, ScheduleItemHiveModel scheduleItemHiveModel) async {
     try {
       var box = await Hive.openBox(courtKey);
-      await box.add(scheduleItemHiveModel);
+      await box.put(scheduleItemHiveModel.key, scheduleItemHiveModel);
       return Future.value(const Right(null));
     } catch (e) {
-      return Future.value(Left(ServerFailure()));
+      return Future.value(Left(HiveFailure()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteEntry(String courtKey, String key) async {
+    try {
+      var box = await Hive.openBox(courtKey);
+      await box.delete(key);
+      return Future.value(const Right(null));
+    } catch (e) {
+      return Future.value(Left(HiveFailure()));
     }
   }
 }

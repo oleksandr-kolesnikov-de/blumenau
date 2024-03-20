@@ -12,15 +12,19 @@ part 'schedule_item_hive_model.g.dart';
 @HiveType(typeId: 0)
 class ScheduleItemHiveModel {
   @HiveField(0)
-  late String title;
+  late String key;
 
   @HiveField(1)
-  late DateTime startTime;
+  late String title;
 
   @HiveField(2)
+  late DateTime startTime;
+
+  @HiveField(3)
   late DateTime endTime;
 
   ScheduleItemHiveModel({
+    required this.key,
     required this.title,
     required this.startTime,
     required this.endTime,

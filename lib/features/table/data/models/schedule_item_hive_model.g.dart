@@ -17,21 +17,24 @@ class ScheduleItemHiveModelAdapter extends TypeAdapter<ScheduleItemHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ScheduleItemHiveModel(
-      title: fields[0] as String,
-      startTime: fields[1] as DateTime,
-      endTime: fields[2] as DateTime,
+      key: fields[0] as String,
+      title: fields[1] as String,
+      startTime: fields[2] as DateTime,
+      endTime: fields[3] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, ScheduleItemHiveModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.key)
       ..writeByte(1)
-      ..write(obj.startTime)
+      ..write(obj.title)
       ..writeByte(2)
+      ..write(obj.startTime)
+      ..writeByte(3)
       ..write(obj.endTime);
   }
 

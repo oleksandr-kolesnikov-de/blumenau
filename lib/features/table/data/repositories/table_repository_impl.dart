@@ -4,6 +4,7 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/error/failure.dart';
+import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_table_excel.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_table_hive.dart';
 import 'package:blumenau/features/table/data/mappers/court_mapper.dart';
@@ -50,7 +51,23 @@ class TableRepositoryImpl implements TableRepository {
       final result2 = await exchangeTableHive.addEntry(
           courtKey,
           ScheduleItemHiveModel(
-              title: right, startTime: startTime, endTime: endTime));
+              key: Utils.getRandomString(10),
+              title: right,
+              startTime: startTime,
+              endTime: endTime));
+      return result2.fold(
+        (failure) => Left(failure),
+        (success) => const Right(true),
+      );
+    });
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteEntry(
+      String courtKey, String pincode, String key) async {
+    final result1 = await exchangeTableHive.retryPin(pincode);
+    return await result1.fold((failure) async => Left(failure), (right) async {
+      final result2 = await exchangeTableHive.deleteEntry(courtKey, key);
       return result2.fold(
         (failure) => Left(failure),
         (success) => const Right(true),

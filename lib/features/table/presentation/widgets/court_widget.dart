@@ -52,6 +52,16 @@ class CourtWidget extends StatelessWidget {
                         endTime: Utils.getTimePlusHour(details),
                       ));
                 },
+                onLongPress: (calendarLongPressDetails) {
+                  context.read<TableBloc>().add(DeleteEntryTableEvent(
+                        courtKey: court.key,
+                        pinCode: Literals.defaultPinCode,
+                        key: _getKey(
+                            calendarLongPressDetails.date ?? DateTime.now(),
+                            schedule.appointments as List<Appointment>,
+                            schedule.keys),
+                      ));
+                },
                 minDate: Utils.getTodaysMinTime(),
                 maxDate: Utils.getTodaysMaxTime(),
                 timeSlotViewSettings: Utils.getWorkingHours(),
@@ -61,5 +71,15 @@ class CourtWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getKey(
+      DateTime time, List<Appointment> appointments, List<String> keys) {
+    for (int i = 0; i < appointments.length; i++) {
+      if (appointments[i].startTime == time) {
+        return keys[i];
+      }
+    }
+    return "";
   }
 }

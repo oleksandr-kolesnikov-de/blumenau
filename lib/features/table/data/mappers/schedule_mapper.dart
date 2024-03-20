@@ -16,6 +16,7 @@ class ScheduleMapper {
     for (final appointment in schedule.appointments!) {
       modelList.add(
         ScheduleItemHiveModel(
+          key: appointment.key!,
           title: appointment.subject!,
           startTime: appointment.startTime!,
           endTime: appointment.endTime!,
@@ -27,6 +28,7 @@ class ScheduleMapper {
 
   static Schedule fromModel(List<ScheduleItemHiveModel> model) {
     final List<Appointment> appointments = [];
+    final List<String> keys = [];
     for (final scheduleItem in model) {
       appointments.add(
         Appointment(
@@ -35,7 +37,8 @@ class ScheduleMapper {
           subject: scheduleItem.title,
         ),
       );
+      keys.add(scheduleItem.key);
     }
-    return Schedule(appointments);
+    return Schedule(appointments, keys);
   }
 }

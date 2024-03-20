@@ -3,6 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'dart:math';
+
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 // [Utils] is a class that contains methods to work with date and time.
@@ -16,12 +18,28 @@ class Utils {
       details.date?.minute ?? 0,
       0);
 
-  static DateTime getTodaysMinTime() => DateTime(DateTime.now().year,
-      DateTime.now().month, DateTime.now().day, DateTime.now().hour + 1, 0, 0);
+  static DateTime getTodaysMinTime() => DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      min(DateTime.now().hour + 1, 21),
+      0,
+      0);
 
   static DateTime getTodaysMaxTime() => DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day, 22, 0, 0);
 
   static TimeSlotViewSettings getWorkingHours() => const TimeSlotViewSettings(
       timeFormat: 'HH:mm', startHour: 8, endHour: 22, nonWorkingDays: <int>[]);
+
+  static String getRandomString(int length) {
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final rnd = Random(DateTime.now().millisecondsSinceEpoch);
+    final buf = StringBuffer();
+    for (var i = 0; i < length; i++) {
+      buf.write(chars[rnd.nextInt(chars.length)]);
+    }
+    return buf.toString();
+  }
 }

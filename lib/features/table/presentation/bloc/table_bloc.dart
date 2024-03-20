@@ -7,6 +7,7 @@ import 'package:blumenau/core/use_case/use_case.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/add_entry.dart';
+import 'package:blumenau/features/table/domain/usecases/delete_entry.dart';
 import 'package:blumenau/features/table/domain/usecases/load_courts.dart';
 import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
@@ -21,8 +22,9 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   LoadSchedule loadSchedule;
   LoadCourts loadCourts;
   AddEntry addEntry;
+  DeleteEntry deleteEntry;
 
-  TableBloc(this.loadSchedule, this.loadCourts, this.addEntry)
+  TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry)
       : super(TableInitialState()) {
     on<LoadTableEvent>((event, emit) async {
       emit(state.loading());
@@ -73,12 +75,20 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     });
 
     on<AddEntryTableEvent>((event, emit) async {
-      var eitherResult1 = await addEntry(AddEntryParams(
+      var eitherResult = await addEntry(AddEntryParams(
           courtKey: event.courtKey,
           pinCode: event.pinCode,
           startTime: event.startTime,
           endTime: event.endTime));
-      eitherResult1.fold((left) {}, (right) {
+      eitherResult.fold((left) {}, (right) {
+        add(LoadScheduleTableEvent());
+      });
+    });
+
+    on<DeleteEntryTableEvent>((event, emit) async {
+      var eitherResult = await deleteEntry(DeleteEntryParams(
+          courtKey: event.courtKey, pinCode: event.pinCode, key: event.key));
+      eitherResult.fold((left) {}, (right) {
         add(LoadScheduleTableEvent());
       });
     });

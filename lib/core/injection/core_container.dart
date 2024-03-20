@@ -11,6 +11,7 @@ import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dar
 import 'package:blumenau/features/table/data/repositories/table_repository_impl.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
 import 'package:blumenau/features/table/domain/usecases/add_entry.dart';
+import 'package:blumenau/features/table/domain/usecases/delete_entry.dart';
 import 'package:blumenau/features/table/domain/usecases/load_courts.dart';
 import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
@@ -26,12 +27,13 @@ Future configureCore() async => await init();
 Future<void> init() async {
   // BLoC
 
-  core.registerFactory(() => TableBloc(core(), core(), core()));
+  core.registerFactory(() => TableBloc(core(), core(), core(), core()));
 
   // Table UseCases and Helpers
   core.registerLazySingleton(() => LoadSchedule(core()));
   core.registerLazySingleton(() => LoadCourts(core()));
   core.registerLazySingleton(() => AddEntry(core()));
+  core.registerLazySingleton(() => DeleteEntry(core()));
 
   // Repository
   core.registerLazySingleton<TableRepository>(
