@@ -3,6 +3,9 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+// [BlumenauPadding] is a class that contains all the paddings used in the application.
+// It is used to avoid hardcoding paddings in the application.
+
 class BlumenauPadding {
   static const double zeroPadding = 0;
   static const double verySmallPadding = 4;
