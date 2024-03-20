@@ -9,13 +9,19 @@ import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class LoadSchedule implements UseCase<Schedule, NoParams> {
+class LoadSchedule implements UseCase<Schedule, LoadScheduleParams> {
   final TableRepository repository;
 
   LoadSchedule(this.repository);
 
   @override
-  Future<Either<Failure, Schedule>> call(NoParams params) async {
-    return await repository.loadSchedule();
+  Future<Either<Failure, Schedule>> call(LoadScheduleParams params) async {
+    return await repository.loadSchedule(params.courtKey);
   }
+}
+
+class LoadScheduleParams {
+  final String courtKey;
+
+  LoadScheduleParams(this.courtKey);
 }

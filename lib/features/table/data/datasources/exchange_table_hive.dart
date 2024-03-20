@@ -9,19 +9,21 @@ import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 
 abstract class ExchangeTableHive {
-  Future<Either<Failure, List<ScheduleItemHiveModel>>> loadSchedule();
+  Future<Either<Failure, List<ScheduleItemHiveModel>>> loadSchedule(
+      String courtKey);
   Future<Either<Failure, String>> retryPin(String pinCode);
   Future<Either<Failure, void>> addEntry(
-      ScheduleItemHiveModel scheduleItemIsarModel);
+      String courtKey, ScheduleItemHiveModel scheduleItemIsarModel);
 }
 
 class ExchangeTableHiveImpl implements ExchangeTableHive {
   ExchangeTableHiveImpl();
 
   @override
-  Future<Either<Failure, List<ScheduleItemHiveModel>>> loadSchedule() async {
+  Future<Either<Failure, List<ScheduleItemHiveModel>>> loadSchedule(
+      String courtKey) async {
     try {
-      var box = await Hive.openBox("schedule");
+      var box = await Hive.openBox(courtKey);
       List<dynamic> allRecords = box.values.toList();
       return Future.value(Right(allRecords.cast<ScheduleItemHiveModel>()));
     } catch (e) {
@@ -40,9 +42,9 @@ class ExchangeTableHiveImpl implements ExchangeTableHive {
 
   @override
   Future<Either<Failure, void>> addEntry(
-      ScheduleItemHiveModel scheduleItemHiveModel) async {
+      String courtKey, ScheduleItemHiveModel scheduleItemHiveModel) async {
     try {
-      var box = await Hive.openBox("schedule");
+      var box = await Hive.openBox(courtKey);
       await box.add(scheduleItemHiveModel);
       return Future.value(const Right(null));
     } catch (e) {

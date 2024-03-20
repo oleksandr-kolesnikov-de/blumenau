@@ -1,14 +1,25 @@
-import 'package:blumenau/core/literals/literals.dart';
+/* ********************************************************************************************* */
+/*                                   Oleksandr Kolesnikov                                        */
+/*                                          © 2024                                               */
+/* ********************************************************************************************* */
+
 import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/style/blumenau_text_style.dart';
+import 'package:blumenau/features/table/domain/entities/court.dart';
+import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
+import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CourtWidget extends StatelessWidget {
+  final Court court;
+  final Schedule schedule;
   const CourtWidget({
     super.key,
+    required this.court,
+    required this.schedule,
   });
 
   @override
@@ -21,17 +32,18 @@ class CourtWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(BlumenauPadding.smallPadding),
-                child: Text(Literals.platz, style: BlumenauTextStyle.headline),
+                child: Text(court.name, style: BlumenauTextStyle.headline),
               ),
               Expanded(
                 child: SfCalendar(
-                  dataSource: state.schedule,
+                  dataSource: schedule,
                   headerHeight: BlumenauPadding.zeroPadding,
                   viewHeaderHeight: BlumenauPadding.zeroPadding,
                   view: CalendarView.day,
                   firstDayOfWeek: DateTime.now().weekday,
                   onTap: (CalendarTapDetails details) {
                     context.read<TableBloc>().add(AddEntryTableEvent(
+                          courtKey: court.key,
                           pinCode: '1234',
                           startTime: details.date ?? DateTime.now(),
                           endTime: DateTime(

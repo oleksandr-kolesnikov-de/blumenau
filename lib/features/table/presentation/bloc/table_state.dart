@@ -3,48 +3,61 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-part of 'table_bloc.dart';
+import 'package:blumenau/features/table/domain/entities/court.dart';
+import 'package:blumenau/features/table/domain/entities/schedule.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class TableState extends Equatable {
-  final Schedule schedule;
-  const TableState(this.schedule);
+part 'table_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+class TableState with _$TableState {
+  const TableState._();
 
-class TableInitialState extends TableState {
-  @override
-  final Schedule schedule;
-  const TableInitialState(this.schedule) : super(schedule);
+  factory TableState(
+      {@Default([]) List<Court> courts,
+      @Default([]) List<Schedule> schedule}) = _TableState;
 
-  @override
-  List<Object> get props => [schedule];
-}
+  factory TableState.initial(
+      {@Default([]) List<Court> courts,
+      @Default([]) List<Schedule> schedule}) = TableInitialState;
 
-class TableLoadingState extends TableState {
-  @override
-  final Schedule schedule;
-  const TableLoadingState(this.schedule) : super(schedule);
+  TableState initial() {
+    return TableState.initial(
+      courts: courts,
+      schedule: schedule,
+    );
+  }
 
-  @override
-  List<Object> get props => [schedule];
-}
+  factory TableState.loading(
+      {@Default([]) List<Court> courts,
+      @Default([]) List<Schedule> schedule}) = TableLoadingState;
 
-class TableErrorState extends TableState {
-  @override
-  final Schedule schedule;
-  const TableErrorState(this.schedule) : super(schedule);
+  TableState loading() {
+    return TableState.loading(
+      courts: courts,
+      schedule: schedule,
+    );
+  }
 
-  @override
-  List<Object> get props => [schedule];
-}
+  factory TableState.loaded(
+      {@Default([]) List<Court> courts,
+      @Default([]) List<Schedule> schedule}) = TableLoadedState;
 
-class TableLoadedState extends TableState {
-  @override
-  final Schedule schedule;
-  const TableLoadedState(this.schedule) : super(schedule);
+  TableState loaded() {
+    return TableState.loaded(
+      courts: courts,
+      schedule: schedule,
+    );
+  }
 
-  @override
-  List<Object> get props => [schedule];
+  factory TableState.error(
+      {@Default([]) List<Court> courts,
+      @Default([]) List<Schedule> schedule}) = TableErrorState;
+
+  TableState error() {
+    return TableState.error(
+      courts: courts,
+      schedule: schedule,
+    );
+  }
 }

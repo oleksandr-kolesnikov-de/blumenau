@@ -16,15 +16,19 @@ class AddEntry implements UseCase<bool, AddEntryParams> {
   @override
   Future<Either<Failure, bool>> call(AddEntryParams params) async {
     return await repository.addEntry(
-        params.pinCode, params.startTime, params.endTime);
+        params.courtKey, params.pinCode, params.startTime, params.endTime);
   }
 }
 
 class AddEntryParams {
+  final String courtKey;
   final String pinCode;
   final DateTime startTime;
   final DateTime endTime;
 
   AddEntryParams(
-      {required this.pinCode, required this.startTime, required this.endTime});
+      {required this.courtKey,
+      required this.pinCode,
+      required this.startTime,
+      required this.endTime});
 }
