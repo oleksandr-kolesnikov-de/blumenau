@@ -14,6 +14,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'table_event.dart';
 
+// [TableBloc] is a BLoC that manages the state of the table screen.
+// It uses the [LoadSchedule], [LoadCourts], [AddEntry] use cases to get the data.
+
 class TableBloc extends Bloc<TableEvent, TableState> {
   LoadSchedule loadSchedule;
   LoadCourts loadCourts;

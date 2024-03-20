@@ -8,6 +8,10 @@ import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dar
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 
+// [ExchangeTableHive] is an abstract class that contains methods to work with the table.
+// It is implemented by [ExchangeTableHiveImpl] class.
+// [ExchangeTableHiveImpl] class contains methods to work with the table in the Hive database.
+
 abstract class ExchangeTableHive {
   Future<Either<Failure, List<ScheduleItemHiveModel>>> loadSchedule(
       String courtKey);

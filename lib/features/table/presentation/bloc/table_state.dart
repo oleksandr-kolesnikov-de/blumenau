@@ -7,6 +7,10 @@ import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// [TableState] is a class that contains the state of the [TableBloc].
+// Possible states are: [TableInitialState], [TableLoadingState], [TableLoadedState], [TableErrorState].
+// Fields are: [courts], [schedule].
+
 part 'table_state.freezed.dart';
 
 @freezed

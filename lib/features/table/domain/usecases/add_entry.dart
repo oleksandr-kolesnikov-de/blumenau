@@ -8,6 +8,10 @@ import 'package:blumenau/core/use_case/use_case.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
 import 'package:dartz/dartz.dart';
 
+// [AddEntry] is a use case that adds an entry to the schedule of a given court.
+// It uses the [TableRepository] to add the entry.
+// It returns a [bool] or a [Failure].
+
 class AddEntry implements UseCase<bool, AddEntryParams> {
   final TableRepository repository;
 

@@ -14,6 +14,9 @@ import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
 import 'package:dartz/dartz.dart';
 
+// [TableRepositoryImpl] is a class that implements the [TableRepository] interface.
+// It uses the [ExchangeTableHive] and [ExchangeTableExcel] to get the data.
+
 class TableRepositoryImpl implements TableRepository {
   final ExchangeTableHive exchangeTableHive;
   final ExchangeTableExcel exchangeTableExcel;

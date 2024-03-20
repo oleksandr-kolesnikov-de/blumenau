@@ -3,11 +3,15 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/literals/literals.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:blumenau/features/table/presentation/widgets/court_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// [TablePage] is a widget that displays a list of [CourtWidget] widgets.
+// It uses the [TableBloc] to get the data and display it.
 
 class TablePage extends StatelessWidget {
   const TablePage({super.key});
@@ -20,8 +24,8 @@ class TablePage extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       } else if (state is TableErrorState) {
-        return const Center(
-          child: Text('Error'),
+        return Center(
+          child: Text(Literals.error),
         );
       } else if (state is TableLoadingState) {
         return const Center(
@@ -34,30 +38,19 @@ class TablePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CourtWidget(
-                    court: state.courts[0],
-                    schedule: state.schedule[0],
-                  ),
-                  CourtWidget(
-                    court: state.courts[1],
-                    schedule: state.schedule[1],
-                  ),
-                  CourtWidget(
-                    court: state.courts[2],
-                    schedule: state.schedule[2],
-                  ),
-                  CourtWidget(
-                    court: state.courts[3],
-                    schedule: state.schedule[3],
-                  ),
+                  for (int i = 0; i < state.courts.length; i++)
+                    CourtWidget(
+                      court: state.courts[i],
+                      schedule: state.schedule[i],
+                    ),
                 ],
               ),
             ],
           ),
         );
       } else {
-        return const Center(
-          child: Text('Unknown state'),
+        return Center(
+          child: Text(Literals.unknownState),
         );
       }
     });

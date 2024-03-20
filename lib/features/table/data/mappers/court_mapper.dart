@@ -6,6 +6,9 @@
 import 'package:blumenau/features/table/data/models/court_model.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 
+// [CourtMapper] is a class that contains methods to convert [Court] objects
+// to [CourtModel] objects and vice versa.
+
 class CourtMapper {
   static List<CourtModel> toModel(List<Court> courts) {
     final List<CourtModel> modelList = [];

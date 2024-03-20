@@ -9,6 +9,10 @@ import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
 import 'package:dartz/dartz.dart';
 
+// [LoadCourts] is a use case that loads the list of courts.
+// It uses the [TableRepository] to get the data.
+// It returns a list of [Court] objects or a [Failure].
+
 class LoadCourts implements UseCase<List<Court>, NoParams> {
   final TableRepository repository;
 

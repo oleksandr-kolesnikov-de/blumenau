@@ -3,6 +3,10 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+// [TableEvent] is a class that contains the events of the [TableBloc].
+// Possible events are: [LoadTableEvent], [LoadCourtsTableEvent],
+// [LoadScheduleTableEvent], [AddEntryTableEvent].
+
 part of 'table_bloc.dart';
 
 abstract class TableEvent extends Equatable {

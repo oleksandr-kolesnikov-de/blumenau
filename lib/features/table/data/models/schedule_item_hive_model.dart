@@ -3,6 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+// Model for Hive database
+
 import 'package:hive/hive.dart';
 
 part 'schedule_item_hive_model.g.dart';

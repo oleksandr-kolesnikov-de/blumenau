@@ -8,6 +8,8 @@ import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:dartz/dartz.dart';
 
+//  [TableRepository] is an abstract class that contains methods to work with the table.
+
 abstract class TableRepository {
   Future<Either<Failure, Schedule>> loadSchedule(String courtKey);
   Future<Either<Failure, List<Court>>> loadCourts();

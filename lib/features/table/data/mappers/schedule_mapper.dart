@@ -7,6 +7,9 @@ import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dar
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+// [ScheduleMapper] is a class that contains methods to convert [Schedule] objects
+// to [ScheduleItemHiveModel] objects and vice versa.
+
 class ScheduleMapper {
   static List<ScheduleItemHiveModel> toModel(Schedule schedule) {
     final List<ScheduleItemHiveModel> modelList = [];
