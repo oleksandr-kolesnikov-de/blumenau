@@ -46,7 +46,7 @@ class TableRepositoryImpl implements TableRepository {
   @override
   Future<Either<Failure, bool>> addEntry(String courtKey, String pinCode,
       DateTime startTime, DateTime endTime) async {
-    final result1 = await exchangeTableHive.retryPin(pinCode);
+    final result1 = await exchangeTableExcel.getPlayerName(pinCode);
     return await result1.fold((failure) async => Left(failure), (right) async {
       final result2 = await exchangeTableHive.addEntry(
           courtKey,
@@ -64,14 +64,23 @@ class TableRepositoryImpl implements TableRepository {
 
   @override
   Future<Either<Failure, bool>> deleteEntry(
-      String courtKey, String pincode, String key) async {
-    final result1 = await exchangeTableHive.retryPin(pincode);
+      String courtKey, String pinCode, String key) async {
+    final result1 = await exchangeTableExcel.getPlayerName(pinCode);
     return await result1.fold((failure) async => Left(failure), (right) async {
-      final result2 = await exchangeTableHive.deleteEntry(courtKey, key);
+      final result2 = await exchangeTableHive.deleteEntry(courtKey, key, right);
       return result2.fold(
         (failure) => Left(failure),
         (success) => const Right(true),
       );
     });
+  }
+
+  @override
+  Future<Either<Failure, bool>> tryPin(String pin) async {
+    final result = await exchangeTableExcel.tryPin(pin);
+    return result.fold(
+      (failure) => Left(failure),
+      (success) => Right(success),
+    );
   }
 }

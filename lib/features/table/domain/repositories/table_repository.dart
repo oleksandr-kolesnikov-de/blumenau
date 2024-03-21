@@ -17,4 +17,5 @@ abstract class TableRepository {
       String courtKey, String pinCode, DateTime startTime, DateTime endTime);
   Future<Either<Failure, bool>> deleteEntry(
       String courtKey, String pincode, String key);
+  Future<Either<Failure, bool>> tryPin(String pin);
 }

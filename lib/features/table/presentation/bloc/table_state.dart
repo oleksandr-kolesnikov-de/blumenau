@@ -17,51 +17,65 @@ part 'table_state.freezed.dart';
 class TableState with _$TableState {
   const TableState._();
 
-  factory TableState(
-      {@Default([]) List<Court> courts,
-      @Default([]) List<Schedule> schedule}) = _TableState;
+  factory TableState({
+    @Default([]) List<Court> courts,
+    @Default([]) List<Schedule> schedule,
+    @Default(false) bool pinVerified,
+  }) = _TableState;
 
-  factory TableState.initial(
-      {@Default([]) List<Court> courts,
-      @Default([]) List<Schedule> schedule}) = TableInitialState;
+  factory TableState.initial({
+    @Default([]) List<Court> courts,
+    @Default([]) List<Schedule> schedule,
+    @Default(false) bool pinVerified,
+  }) = TableInitialState;
 
   TableState initial() {
     return TableState.initial(
       courts: courts,
       schedule: schedule,
+      pinVerified: pinVerified,
     );
   }
 
-  factory TableState.loading(
-      {@Default([]) List<Court> courts,
-      @Default([]) List<Schedule> schedule}) = TableLoadingState;
+  factory TableState.loading({
+    @Default([]) List<Court> courts,
+    @Default([]) List<Schedule> schedule,
+    @Default(false) bool pinVerified,
+  }) = TableLoadingState;
 
   TableState loading() {
     return TableState.loading(
       courts: courts,
       schedule: schedule,
+      pinVerified: pinVerified,
     );
   }
 
-  factory TableState.loaded(
-      {@Default([]) List<Court> courts,
-      @Default([]) List<Schedule> schedule}) = TableLoadedState;
+  factory TableState.loaded({
+    @Default([]) List<Court> courts,
+    @Default([]) List<Schedule> schedule,
+    @Default(false) bool pinVerified,
+  }) = TableLoadedState;
 
   TableState loaded() {
     return TableState.loaded(
       courts: courts,
       schedule: schedule,
+      pinVerified: pinVerified,
     );
   }
 
-  factory TableState.error(
-      {@Default([]) List<Court> courts,
-      @Default([]) List<Schedule> schedule}) = TableErrorState;
+  factory TableState.error({
+    @Default([]) List<Court> courts,
+    @Default([]) List<Schedule> schedule,
+    @Default(false) bool pinVerified,
+  }) = TableErrorState;
 
   TableState error() {
     return TableState.error(
       courts: courts,
       schedule: schedule,
+      pinVerified: pinVerified,
     );
   }
 }

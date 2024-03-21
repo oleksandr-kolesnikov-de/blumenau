@@ -11,6 +11,7 @@ import 'package:blumenau/features/table/domain/usecases/add_entry.dart';
 import 'package:blumenau/features/table/domain/usecases/delete_entry.dart';
 import 'package:blumenau/features/table/domain/usecases/load_courts.dart';
 import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
+import 'package:blumenau/features/table/domain/usecases/try_pin.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,8 +25,10 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   LoadCourts loadCourts;
   AddEntry addEntry;
   DeleteEntry deleteEntry;
+  TryPin tryPin;
 
-  TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry)
+  TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry,
+      this.tryPin)
       : super(TableInitialState()) {
     on<LoadTableEvent>((event, emit) async {
       await Future.delayed(BlumenauDuration.bigDuration);
@@ -93,6 +96,17 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       eitherResult.fold((left) {}, (right) {
         add(LoadScheduleTableEvent());
       });
+    });
+
+    on<TryPinCodeTableEvent>((event, emit) async {
+      var eitherResult = await tryPin(TryPinParams(pin: event.pinCode));
+      eitherResult.fold((left) {}, (right) {
+        emit(state.loaded().copyWith(pinVerified: true));
+      });
+    });
+
+    on<ResetPinCodeTableEvent>((event, emit) async {
+      emit(state.loaded().copyWith(pinVerified: false));
     });
   }
 }

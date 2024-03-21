@@ -46,3 +46,13 @@ class DeleteEntryTableEvent extends TableEvent {
   @override
   List<Object> get props => [pinCode, courtKey, key];
 }
+
+class TryPinCodeTableEvent extends TableEvent {
+  final String pinCode;
+
+  const TryPinCodeTableEvent({required this.pinCode});
+  @override
+  List<Object> get props => [pinCode];
+}
+
+class ResetPinCodeTableEvent extends TableEvent {}

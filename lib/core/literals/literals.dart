@@ -12,4 +12,5 @@ class Literals {
   static String defaultPinCode = "1234";
   static String error = "Fehler";
   static String unknownState = "Unbekannter Zustand";
+  static String accept = "Bestätigen";
 }

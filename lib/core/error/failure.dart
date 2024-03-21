@@ -17,4 +17,4 @@ abstract class Failure extends Equatable {
 
 class HiveFailure extends Failure {}
 
-class CacheFailure extends Failure {}
+class ExcelFailure extends Failure {}

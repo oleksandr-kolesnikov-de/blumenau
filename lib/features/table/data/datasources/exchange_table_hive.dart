@@ -15,10 +15,10 @@ import 'package:hive/hive.dart';
 abstract class ExchangeTableHive {
   Future<Either<Failure, List<ScheduleItemHiveModel>>> loadSchedule(
       String courtKey);
-  Future<Either<Failure, String>> retryPin(String pinCode);
   Future<Either<Failure, void>> addEntry(
       String courtKey, ScheduleItemHiveModel scheduleItemIsarModel);
-  Future<Either<Failure, void>> deleteEntry(String courtKey, String key);
+  Future<Either<Failure, void>> deleteEntry(
+      String courtKey, String key, String name);
 }
 
 class ExchangeTableHiveImpl implements ExchangeTableHive {
@@ -37,15 +37,6 @@ class ExchangeTableHiveImpl implements ExchangeTableHive {
   }
 
   @override
-  Future<Either<Failure, String>> retryPin(String pinCode) {
-    try {
-      return Future.value(const Right("Some player"));
-    } catch (e) {
-      return Future.value(Left(HiveFailure()));
-    }
-  }
-
-  @override
   Future<Either<Failure, void>> addEntry(
       String courtKey, ScheduleItemHiveModel scheduleItemHiveModel) async {
     try {
@@ -58,10 +49,14 @@ class ExchangeTableHiveImpl implements ExchangeTableHive {
   }
 
   @override
-  Future<Either<Failure, void>> deleteEntry(String courtKey, String key) async {
+  Future<Either<Failure, void>> deleteEntry(
+      String courtKey, String key, String name) async {
     try {
       var box = await Hive.openBox(courtKey);
-      await box.delete(key);
+      ScheduleItemHiveModel entry = await box.get(key);
+      if (entry.title == name) {
+        await box.delete(key);
+      }
       return Future.value(const Right(null));
     } catch (e) {
       return Future.value(Left(HiveFailure()));

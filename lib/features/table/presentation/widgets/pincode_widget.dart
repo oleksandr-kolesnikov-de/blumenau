@@ -3,8 +3,12 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/literals/literals.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
+import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
+import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 
 // [PinCodeWidget] is a widget that displays a pin code input field.
@@ -21,6 +25,13 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<TableBloc>().add(ResetPinCodeTableEvent());
+    focusNode.requestFocus();
+  }
 
   @override
   void dispose() {
@@ -55,7 +66,6 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Directionality(
-              // Specify direction if desired
               textDirection: TextDirection.ltr,
               child: Pinput(
                 controller: pinController,
@@ -79,6 +89,11 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                     ),
                   ],
                 ),
+                onCompleted: (value) {
+                  context
+                      .read<TableBloc>()
+                      .add(TryPinCodeTableEvent(pinCode: value.toString()));
+                },
                 focusedPinTheme: defaultPinTheme.copyWith(
                   decoration: defaultPinTheme.decoration!.copyWith(
                     borderRadius: BorderRadius.circular(8),
@@ -97,17 +112,19 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                if (pinController.text == "1234") {
-                  focusNode.unfocus();
-                  Navigator.of(context).pop(pinController.text);
-                } else {
-                  pinController.clear();
-                }
-              },
-              child: const Text('Verify'),
-            ),
+            BlocBuilder<TableBloc, TableState>(builder: (context, state) {
+              return TextButton(
+                onPressed: () {
+                  if (state.pinVerified) {
+                    focusNode.unfocus();
+                    Navigator.of(context).pop(pinController.text);
+                  } else {
+                    pinController.clear();
+                  }
+                },
+                child: Text(Literals.accept),
+              );
+            }),
           ],
         ),
       ),
