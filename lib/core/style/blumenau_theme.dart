@@ -3,16 +3,19 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/style/blumenau_color.dart';
+import 'package:blumenau/core/style/blumenau_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
-//  [BlumenauTextStyle] is a class that contains all the text styles used in the application.
-//  It is used to avoid hardcoding text styles in the application.
-
-class BlumenauTextStyle {
-  static const TextStyle headline = TextStyle(
-      color: Colors.grey, fontSize: 20, decoration: TextDecoration.none);
-  static const TextStyle pinText = TextStyle(
-    fontSize: 22,
-    color: Color.fromRGBO(30, 60, 87, 1),
+class BlumenauTheme {
+  static PinTheme pinTheme = PinTheme(
+    width: 56,
+    height: 56,
+    textStyle: BlumenauTextStyle.pinText,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(19),
+      border: Border.all(color: BlumenauColor.pinBorderColor),
+    ),
   );
 }

@@ -3,7 +3,9 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/config/page_view_config.dart';
 import 'package:blumenau/core/literals/literals.dart';
+import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/widgets/splash_screen_widget.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
@@ -43,30 +45,27 @@ class TablePageState extends State<TablePage> {
             schedule: state.schedule[entry.key],
           );
         }).toList();
-
-        // Calculate number of pages needed
-        final pageCount = (courtWidgets.length / 3).ceil();
-
+        final pageCount =
+            (courtWidgets.length / PageViewConfig.desktopItemsPerPage).ceil();
         return Container(
           color: Colors.white,
           child: Stack(
             children: [
-              Expanded(
-                child: PageView.builder(
-                  controller: pageController,
-                  itemCount: pageCount,
-                  itemBuilder: (context, pageIndex) {
-                    final startIndex = pageIndex * 3;
-                    final endIndex =
-                        (startIndex + 3).clamp(0, courtWidgets.length);
-                    final pageWidgets =
-                        courtWidgets.sublist(startIndex, endIndex);
-
-                    return Row(
-                      children: pageWidgets,
-                    );
-                  },
-                ),
+              PageView.builder(
+                controller: pageController,
+                itemCount: pageCount,
+                itemBuilder: (context, pageIndex) {
+                  final startIndex =
+                      pageIndex * PageViewConfig.desktopItemsPerPage;
+                  final endIndex =
+                      (startIndex + PageViewConfig.desktopItemsPerPage)
+                          .clamp(0, courtWidgets.length);
+                  final pageWidgets =
+                      courtWidgets.sublist(startIndex, endIndex);
+                  return Row(
+                    children: pageWidgets,
+                  );
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +74,7 @@ class TablePageState extends State<TablePage> {
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
                       pageController.previousPage(
-                        duration: const Duration(milliseconds: 300),
+                        duration: BlumenauDuration.animationDuration,
                         curve: Curves.easeInOut,
                       );
                     },
@@ -84,7 +83,7 @@ class TablePageState extends State<TablePage> {
                     icon: const Icon(Icons.arrow_forward),
                     onPressed: () {
                       pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
+                        duration: BlumenauDuration.animationDuration,
                         curve: Curves.easeInOut,
                       );
                     },

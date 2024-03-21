@@ -101,7 +101,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     on<TryPinCodeTableEvent>((event, emit) async {
       var eitherResult = await tryPin(TryPinParams(pin: event.pinCode));
       eitherResult.fold((left) {}, (right) {
-        emit(state.loaded().copyWith(pinVerified: true));
+        emit(state.loaded().copyWith(pinVerified: right));
       });
     });
 

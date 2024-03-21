@@ -23,12 +23,13 @@ class SplashScreenWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/logo.png'),
-          const SizedBox(
-            height: BlumenauPadding.bigPadding,
-          ),
-          SizedBox(
-              width: MediaQuery.of(context).size.width * BlumenauFraction.sixth,
-              child: const LinearProgressIndicator())
+          Padding(
+            padding: const EdgeInsets.only(top: BlumenauPadding.bigPadding * 2),
+            child: SizedBox(
+                width:
+                    MediaQuery.of(context).size.width * BlumenauFraction.sixth,
+                child: const LinearProgressIndicator()),
+          )
         ],
       ),
     );
