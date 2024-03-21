@@ -24,6 +24,7 @@ dependencies:
   hive_generator: ^2.0.1
   freezed: ^2.4.7
   freezed_annotation: ^2.4.1
+  pinput: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -32,5 +33,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/logo.png
 
 

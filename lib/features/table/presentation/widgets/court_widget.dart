@@ -3,13 +3,13 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'package:blumenau/core/literals/literals.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/style/blumenau_text_style.dart';
 import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
+import 'package:blumenau/features/table/presentation/widgets/piccode_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -44,23 +44,31 @@ class CourtWidget extends StatelessWidget {
                 viewHeaderHeight: BlumenauPadding.zeroPadding,
                 view: CalendarView.day,
                 firstDayOfWeek: DateTime.now().weekday,
-                onTap: (CalendarTapDetails details) {
-                  context.read<TableBloc>().add(AddEntryTableEvent(
-                        courtKey: court.key,
-                        pinCode: Literals.defaultPinCode,
-                        startTime: details.date ?? DateTime.now(),
-                        endTime: Utils.getTimePlusHour(details),
-                      ));
+                onTap: (CalendarTapDetails details) async {
+                  showPinCodeDialog(context).then((result) {
+                    if (result is String) {
+                      context.read<TableBloc>().add(AddEntryTableEvent(
+                            courtKey: court.key,
+                            pinCode: result,
+                            startTime: details.date ?? DateTime.now(),
+                            endTime: Utils.getTimePlusHour(details),
+                          ));
+                    }
+                  });
                 },
-                onLongPress: (calendarLongPressDetails) {
-                  context.read<TableBloc>().add(DeleteEntryTableEvent(
-                        courtKey: court.key,
-                        pinCode: Literals.defaultPinCode,
-                        key: _getKey(
-                            calendarLongPressDetails.date ?? DateTime.now(),
-                            schedule.appointments as List<Appointment>,
-                            schedule.keys),
-                      ));
+                onLongPress: (calendarLongPressDetails) async {
+                  showPinCodeDialog(context).then((result) {
+                    if (result is String) {
+                      context.read<TableBloc>().add(DeleteEntryTableEvent(
+                            courtKey: court.key,
+                            pinCode: result,
+                            key: _getKey(
+                                calendarLongPressDetails.date ?? DateTime.now(),
+                                schedule.appointments as List<Appointment>,
+                                schedule.keys),
+                          ));
+                    }
+                  });
                 },
                 minDate: Utils.getTodaysMinTime(),
                 maxDate: Utils.getTodaysMaxTime(),

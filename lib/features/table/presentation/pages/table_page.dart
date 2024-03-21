@@ -4,6 +4,7 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/literals/literals.dart';
+import 'package:blumenau/core/widgets/splash_screen_widget.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:blumenau/features/table/presentation/widgets/court_widget.dart';
@@ -20,17 +21,13 @@ class TablePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TableBloc, TableState>(builder: (context, state) {
       if (state is TableInitialState) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const SplashScreenWidget();
       } else if (state is TableErrorState) {
         return Center(
           child: Text(Literals.error),
         );
       } else if (state is TableLoadingState) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const SplashScreenWidget();
       } else if (state is TableLoadedState) {
         return Container(
           color: Colors.white,

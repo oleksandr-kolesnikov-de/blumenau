@@ -3,6 +3,7 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/use_case/use_case.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
@@ -27,6 +28,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry)
       : super(TableInitialState()) {
     on<LoadTableEvent>((event, emit) async {
+      await Future.delayed(BlumenauDuration.bigDuration);
       emit(state.loading());
       List<Court> courts = [];
       List<Schedule> schedule = [];
