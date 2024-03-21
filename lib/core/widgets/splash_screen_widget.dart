@@ -27,7 +27,7 @@ class SplashScreenWidget extends StatelessWidget {
             height: BlumenauPadding.bigPadding,
           ),
           SizedBox(
-              width: MediaQuery.of(context).size.width * BlumenauFraction.fourth,
+              width: MediaQuery.of(context).size.width * BlumenauFraction.sixth,
               child: const LinearProgressIndicator())
         ],
       ),

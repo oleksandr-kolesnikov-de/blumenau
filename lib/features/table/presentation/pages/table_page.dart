@@ -14,8 +14,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // [TablePage] is a widget that displays a list of [CourtWidget] widgets.
 // It uses the [TableBloc] to get the data and display it.
 
-class TablePage extends StatelessWidget {
+class TablePage extends StatefulWidget {
   const TablePage({super.key});
+
+  @override
+  TablePageState createState() => TablePageState();
+}
+
+class TablePageState extends State<TablePage> {
+  final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +36,59 @@ class TablePage extends StatelessWidget {
       } else if (state is TableLoadingState) {
         return const SplashScreenWidget();
       } else if (state is TableLoadedState) {
+        final List<CourtWidget> courtWidgets =
+            state.courts.asMap().entries.map((entry) {
+          return CourtWidget(
+            court: entry.value,
+            schedule: state.schedule[entry.key],
+          );
+        }).toList();
+
+        // Calculate number of pages needed
+        final pageCount = (courtWidgets.length / 3).ceil();
+
         return Container(
           color: Colors.white,
-          child: PageView(
+          child: Stack(
             children: [
+              Expanded(
+                child: PageView.builder(
+                  controller: pageController,
+                  itemCount: pageCount,
+                  itemBuilder: (context, pageIndex) {
+                    final startIndex = pageIndex * 3;
+                    final endIndex =
+                        (startIndex + 3).clamp(0, courtWidgets.length);
+                    final pageWidgets =
+                        courtWidgets.sublist(startIndex, endIndex);
+
+                    return Row(
+                      children: pageWidgets,
+                    );
+                  },
+                ),
+              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  for (int i = 0; i < state.courts.length; i++)
-                    CourtWidget(
-                      court: state.courts[i],
-                      schedule: state.schedule[i],
-                    ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: () {
+                      pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                  ),
                 ],
               ),
             ],
