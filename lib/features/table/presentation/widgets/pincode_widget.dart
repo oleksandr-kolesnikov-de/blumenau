@@ -15,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 
 // [PinCodeWidget] is a widget that displays a pin code input field.
-// It uses the [PinTheme] to style the input field.
+// to confirm changes in the table.
 
 class PinCodeWidget extends StatefulWidget {
   const PinCodeWidget({super.key});
@@ -48,6 +48,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Pin code input field
           Directionality(
             textDirection: TextDirection.ltr,
             child: Pinput(
@@ -96,19 +97,34 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                   border: Border.all(color: BlumenauColor.pinErrorColor)),
             ),
           ),
+          // Buttons to cancel or accept the pin code
           BlocBuilder<TableBloc, TableState>(builder: (context, state) {
             return Padding(
               padding: const EdgeInsets.only(top: BlumenauPadding.bigPadding),
-              child: TextButton(
-                onPressed: () {
-                  if (state.pinVerified) {
-                    focusNode.unfocus();
-                    Navigator.of(context).pop(pinController.text);
-                  } else {
-                    pinController.clear();
-                  }
-                },
-                child: Text(Literals.accept),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Cancel button
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(Literals.cancel),
+                  ),
+                  const SizedBox(width: BlumenauPadding.smallPadding),
+                  // Accept button
+                  TextButton(
+                    onPressed: () {
+                      if (state.pinVerified) {
+                        focusNode.unfocus();
+                        Navigator.of(context).pop(pinController.text);
+                      } else {
+                        pinController.clear();
+                      }
+                    },
+                    child: Text(Literals.accept),
+                  ),
+                ],
               ),
             );
           }),

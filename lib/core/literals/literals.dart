@@ -13,4 +13,5 @@ class Literals {
   static String error = "Fehler";
   static String unknownState = "Unbekannter Zustand";
   static String accept = "Bestätigen";
+  static String cancel = "Abbrechen";
 }
