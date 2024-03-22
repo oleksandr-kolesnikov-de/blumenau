@@ -3,12 +3,20 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'package:blumenau/core/error/failure.dart';
-import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
-// [UseCase] is an abstract class that contains the list of all possible use cases.
-// It is used to handle use cases in the application.
-
-abstract class UseCase<Type, Params> {
-  Future<Either<Failure, Type>> call(Params params);
+class BlumenauTransition {
+  static Widget normalDialogTransition(
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
+    return ScaleTransition(
+      scale: Tween<double>(
+        begin: 0.8,
+        end: 1.0,
+      ).animate(animation),
+      child: child,
+    );
+  }
 }

@@ -15,6 +15,7 @@ import 'package:blumenau/features/table/domain/usecases/delete_entry.dart';
 import 'package:blumenau/features/table/domain/usecases/load_courts.dart';
 import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/try_pin.dart';
+import 'package:blumenau/features/table/presentation/bloc/helpers/get_key_for_appointment.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
@@ -30,12 +31,15 @@ Future<void> init() async {
 
   core.registerFactory(() => TableBloc(core(), core(), core(), core(), core()));
 
-  // Table UseCases and Helpers
+  // Table UseCases
   core.registerLazySingleton(() => LoadSchedule(core()));
   core.registerLazySingleton(() => LoadCourts(core()));
   core.registerLazySingleton(() => AddEntry(core()));
   core.registerLazySingleton(() => DeleteEntry(core()));
   core.registerLazySingleton(() => TryPin(core()));
+
+  // Table Helpers
+  core.registerLazySingleton(() => GetKeyForAppointment());
 
   // Repository
   core.registerLazySingleton<TableRepository>(

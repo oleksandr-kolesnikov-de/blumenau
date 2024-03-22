@@ -4,7 +4,7 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/style/blumenau_duration.dart';
-import 'package:blumenau/core/use_case/use_case.dart';
+import 'package:blumenau/core/use_case/no_params.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/add_entry.dart';
