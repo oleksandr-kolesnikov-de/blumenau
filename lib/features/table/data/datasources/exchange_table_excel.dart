@@ -8,8 +8,8 @@ import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart
 import 'package:blumenau/features/table/data/models/court_model.dart';
 import 'package:dartz/dartz.dart';
 
-// [ExchangeClubData] is an abstract class that contains methods to work with the table.
-// It is implemented by [ExchangeTableExcelImpl] class.
+// Implementation of the [ExchangeClubData] interface.
+// with MS Excel.
 
 class ExchangeClubDataExcelImpl implements ExchangeClubData {
   ExchangeClubDataExcelImpl();

@@ -5,8 +5,12 @@
 
 // Model for the court.
 
-class CourtModel {
+import 'package:blumenau/features/table/domain/entities/court.dart';
+
+class CourtModel implements Court {
+  @override
   final String name;
+  @override
   final String key;
   const CourtModel({required this.name, required this.key});
 }

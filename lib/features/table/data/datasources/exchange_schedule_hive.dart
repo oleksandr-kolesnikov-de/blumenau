@@ -10,8 +10,8 @@ import 'package:blumenau/features/table/data/models/schedule_item_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 
-// It is implemented by [ExchangeScheduleHiveImpl] class.
-// [ExchangeScheduleHiveImpl] class contains methods to work with the table in the Hive database.
+// Implementation of the [ExchangeSchedule] interface.
+// with Hive database.
 
 class ExchangeScheduleHiveImpl implements ExchangeSchedule {
   ExchangeScheduleHiveImpl();

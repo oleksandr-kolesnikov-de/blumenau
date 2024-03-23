@@ -3,7 +3,9 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-class ScheduleItemModel {
+// [ScheduleItemModel] is a class that contains the schedule of one reservation.
+
+abstract class ScheduleItemModel {
   late String key;
   late String title;
   late DateTime startTime;
