@@ -33,7 +33,13 @@ class ExchangeScheduleHiveImpl implements ExchangeSchedule {
       String courtKey, ScheduleItem scheduleItem) async {
     try {
       var box = await Hive.openBox(courtKey);
-      await box.put(scheduleItem.key, scheduleItem);
+      await box.put(
+          scheduleItem.key,
+          ScheduleItemHiveModel(
+              key: scheduleItem.key,
+              title: scheduleItem.title,
+              startTime: scheduleItem.startTime,
+              endTime: scheduleItem.endTime));
       return Future.value(const Right(null));
     } catch (e) {
       return Future.value(Left(HiveFailure()));

@@ -5,11 +5,11 @@
 
 // [ScheduleItem] is a class that contains the schedule of one reservation.
 
-abstract class ScheduleItem {
-  late String key;
-  late String title;
-  late DateTime startTime;
-  late DateTime endTime;
+class ScheduleItem {
+  final String key;
+  final String title;
+  final DateTime startTime;
+  final DateTime endTime;
   ScheduleItem({
     required this.key,
     required this.title,

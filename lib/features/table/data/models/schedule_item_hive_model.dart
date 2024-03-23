@@ -14,19 +14,19 @@ part 'schedule_item_hive_model.g.dart';
 class ScheduleItemHiveModel implements ScheduleItem {
   @override
   @HiveField(0)
-  late String key;
+  final String key;
 
   @override
   @HiveField(1)
-  late String title;
+  final String title;
 
   @override
   @HiveField(2)
-  late DateTime startTime;
+  final DateTime startTime;
 
   @override
   @HiveField(3)
-  late DateTime endTime;
+  final DateTime endTime;
 
   ScheduleItemHiveModel({
     required this.key,

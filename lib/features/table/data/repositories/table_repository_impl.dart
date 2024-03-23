@@ -7,10 +7,8 @@ import 'package:blumenau/core/error/failure.dart';
 import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
-import 'package:blumenau/features/table/data/mappers/schedule_mapper.dart';
-import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
-import 'package:blumenau/features/table/domain/entities/schedule.dart';
+import 'package:blumenau/features/table/domain/entities/schedule_item.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -24,12 +22,12 @@ class TableRepositoryImpl implements TableRepository {
   TableRepositoryImpl(this.exchangeSchedule, this.exchangeClubData);
 
   @override
-  Future<Either<Failure, Schedule>> loadSchedule(String courtKey) async {
+  Future<Either<Failure, List<ScheduleItem>>> loadSchedule(
+      String courtKey) async {
     final result = await exchangeSchedule.loadSchedule(courtKey);
     return result.fold(
       (failure) => Left(failure),
-      (scheduleItemModels) =>
-          Right(ScheduleMapper.fromModel(scheduleItemModels)),
+      (scheduleItems) => Right(scheduleItems),
     );
   }
 
@@ -49,7 +47,7 @@ class TableRepositoryImpl implements TableRepository {
     return await result1.fold((failure) async => Left(failure), (right) async {
       final result2 = await exchangeSchedule.addEntry(
           courtKey,
-          ScheduleItemHiveModel(
+          ScheduleItem(
               key: Utils.getRandomString(10),
               title: right,
               startTime: startTime,
