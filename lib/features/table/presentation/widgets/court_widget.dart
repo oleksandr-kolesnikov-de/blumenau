@@ -9,7 +9,7 @@ import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
-import 'package:blumenau/features/table/presentation/widgets/piccode_dialog.dart';
+import 'package:blumenau/features/table/presentation/widgets/dialog/piccode_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
