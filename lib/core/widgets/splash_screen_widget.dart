@@ -3,6 +3,7 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/keys/widget_keys.dart';
 import 'package:blumenau/core/style/blumenau_fraction.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +23,16 @@ class SplashScreenWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/logo.png'),
+          Image.asset(
+              key: const Key(WidgetKey.splashScreenLogo), 'assets/logo.png'),
           Padding(
             padding: const EdgeInsets.only(top: BlumenauPadding.bigPadding * 2),
             child: SizedBox(
                 width:
                     MediaQuery.of(context).size.width * BlumenauFraction.sixth,
-                child: const LinearProgressIndicator()),
+                child: const LinearProgressIndicator(
+                  key: Key(WidgetKey.splashScreenIdicator),
+                )),
           )
         ],
       ),

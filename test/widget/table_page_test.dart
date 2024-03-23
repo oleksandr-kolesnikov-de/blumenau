@@ -1,3 +1,8 @@
+/* ********************************************************************************************* */
+/*                                   Oleksandr Kolesnikov                                        */
+/*                                          © 2024                                               */
+/* ********************************************************************************************* */
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
@@ -9,6 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+// [TablePage] test
+// Checks wether rendered correct number of courts
 
 class MockTableBloc extends MockBloc<TableEvent, TableState>
     implements TableBloc {}
