@@ -39,12 +39,18 @@ class AddEntryTableEvent extends TableEvent {
 class DeleteEntryTableEvent extends TableEvent {
   final String courtKey;
   final String pinCode;
-  final String key;
+  final List<Appointment> appointments;
+  final List<String> keys;
+  final DateTime startTime;
 
   const DeleteEntryTableEvent(
-      {required this.courtKey, required this.pinCode, required this.key});
+      {required this.courtKey,
+      required this.pinCode,
+      required this.appointments,
+      required this.keys,
+      required this.startTime});
   @override
-  List<Object> get props => [pinCode, courtKey, key];
+  List<Object> get props => [pinCode, courtKey, appointments, keys, startTime];
 }
 
 class TryPinCodeTableEvent extends TableEvent {

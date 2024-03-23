@@ -4,7 +4,6 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/keys/widget_keys.dart';
-import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/widgets/splash_screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

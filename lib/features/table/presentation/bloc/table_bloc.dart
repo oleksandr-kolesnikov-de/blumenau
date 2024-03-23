@@ -9,26 +9,31 @@ import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/add_entry.dart';
 import 'package:blumenau/features/table/domain/usecases/delete_entry.dart';
+import 'package:blumenau/features/table/domain/usecases/helpers/get_key_for_appointment.dart';
 import 'package:blumenau/features/table/domain/usecases/load_courts.dart';
 import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/try_pin.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 part 'table_event.dart';
 
 // [TableBloc] is a BLoC that manages the state of the table screen.
 // It uses the [LoadSchedule], [LoadCourts], [AddEntry] use cases to get the data.
 
 class TableBloc extends Bloc<TableEvent, TableState> {
+  // Use cases
   LoadSchedule loadSchedule;
   LoadCourts loadCourts;
   AddEntry addEntry;
   DeleteEntry deleteEntry;
   TryPin tryPin;
+  // Helpers
+  GetKeyForAppointment getKeyForAppointment;
 
   TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry,
-      this.tryPin)
+      this.tryPin, this.getKeyForAppointment)
       : super(TableInitialState()) {
     on<LoadTableEvent>((event, emit) async {
       await Future.delayed(BlumenauDuration.bigDuration);
@@ -91,8 +96,13 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     });
 
     on<DeleteEntryTableEvent>((event, emit) async {
+      String key = getKeyForAppointment(GetKeyForAppointmentParams(
+        time: event.startTime,
+        appointments: event.appointments,
+        keys: event.keys,
+      ));
       var eitherResult = await deleteEntry(DeleteEntryParams(
-          courtKey: event.courtKey, pinCode: event.pinCode, key: event.key));
+          courtKey: event.courtKey, pinCode: event.pinCode, key: key));
       eitherResult.fold((left) {}, (right) {
         add(LoadScheduleTableEvent());
       });

@@ -3,13 +3,11 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'package:blumenau/core/injection/core_container.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/style/blumenau_text_style.dart';
 import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
-import 'package:blumenau/features/table/presentation/bloc/helpers/get_key_for_appointment.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/widgets/piccode_dialog.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +17,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 // [CourtWidget] is a widget that displays a [SfCalendar] widget.
 // It uses the [Court] and [Schedule] to get the data and display it.
 
-class CourtWidget extends StatelessWidget with CourtWidgetHelpers {
+class CourtWidget extends StatelessWidget {
   final Court court;
   final Schedule schedule;
   const CourtWidget({
@@ -64,14 +62,11 @@ class CourtWidget extends StatelessWidget with CourtWidgetHelpers {
                       context.read<TableBloc>().add(DeleteEntryTableEvent(
                             courtKey: court.key,
                             pinCode: result,
-                            key:
-                                getKeyForAppointment(GetKeyForAppointmentParams(
-                              time: calendarLongPressDetails.date ??
-                                  DateTime.now(),
-                              appointments:
-                                  schedule.appointments as List<Appointment>,
-                              keys: schedule.keys,
-                            )),
+                            startTime:
+                                calendarLongPressDetails.date ?? DateTime.now(),
+                            appointments:
+                                schedule.appointments as List<Appointment>,
+                            keys: schedule.keys,
                           ));
                     }
                   });
@@ -86,11 +81,4 @@ class CourtWidget extends StatelessWidget with CourtWidgetHelpers {
       ),
     );
   }
-}
-
-// [CourtWidgetHelpers] is a mixin that contains all helpers from
-// core container that are used in [CourtWidget].
-
-mixin CourtWidgetHelpers {
-  GetKeyForAppointment get getKeyForAppointment => core<GetKeyForAppointment>();
 }
