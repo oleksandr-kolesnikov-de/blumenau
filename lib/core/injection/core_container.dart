@@ -9,6 +9,8 @@ import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_table_excel.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule_hive.dart';
+import 'package:blumenau/features/table/data/factories/schedule_item_factory.dart';
+import 'package:blumenau/features/table/data/factories/schedule_item_hive_factory.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/data/repositories/table_repository_impl.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
@@ -46,13 +48,17 @@ Future<void> init() async {
 
   // Repository
   core.registerLazySingleton<TableRepository>(
-      () => TableRepositoryImpl(core(), core()));
+      () => TableRepositoryImpl(core(), core(), core()));
 
   // DataSources
   core.registerLazySingleton<ExchangeSchedule>(
       () => ExchangeScheduleHiveImpl());
   core.registerLazySingleton<ExchangeClubData>(
       () => ExchangeClubDataExcelImpl());
+
+  // Factories
+  core.registerLazySingleton<ScheduleItemFactory>(
+      () => ScheduleItemHiveFactory());
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

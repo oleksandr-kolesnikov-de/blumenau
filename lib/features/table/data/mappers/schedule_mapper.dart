@@ -11,7 +11,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 // list of [ScheduleItem] to [Schedule].
 
 class ScheduleMapper {
-  static Schedule fromModel(List<ScheduleItem> list) {
+  static Schedule fromListItems(List<ScheduleItem> list) {
     final List<Appointment> appointments = [];
     final List<String> keys = [];
     for (final scheduleItem in list) {
