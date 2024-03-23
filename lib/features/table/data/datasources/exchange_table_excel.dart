@@ -4,20 +4,15 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/error/failure.dart';
+import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
 import 'package:blumenau/features/table/data/models/court_model.dart';
 import 'package:dartz/dartz.dart';
 
-// [ExchangeTableExcel] is an abstract class that contains methods to work with the table.
+// [ExchangeClubData] is an abstract class that contains methods to work with the table.
 // It is implemented by [ExchangeTableExcelImpl] class.
 
-abstract class ExchangeTableExcel {
-  Future<Either<Failure, List<CourtModel>>> loadCourts();
-  Future<Either<Failure, bool>> tryPin(String pin);
-  Future<Either<Failure, String>> getPlayerName(String pin);
-}
-
-class ExchangeTableExcelImpl implements ExchangeTableExcel {
-  ExchangeTableExcelImpl();
+class ExchangeClubDataExcelImpl implements ExchangeClubData {
+  ExchangeClubDataExcelImpl();
 
   Map<String, String> hardcodedPlayersData = const {
     "Roger Federer": "1234",

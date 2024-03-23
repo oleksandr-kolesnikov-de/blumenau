@@ -3,32 +3,12 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-// Model for Hive database
-
-import 'package:blumenau/features/table/data/models/schedule_item_model.dart';
-import 'package:hive/hive.dart';
-
-part 'schedule_item_hive_model.g.dart';
-
-@HiveType(typeId: 0)
-class ScheduleItemHiveModel implements ScheduleItemModel {
-  @override
-  @HiveField(0)
+class ScheduleItemModel {
   late String key;
-
-  @override
-  @HiveField(1)
   late String title;
-
-  @override
-  @HiveField(2)
   late DateTime startTime;
-
-  @override
-  @HiveField(3)
   late DateTime endTime;
-
-  ScheduleItemHiveModel({
+  ScheduleItemModel({
     required this.key,
     required this.title,
     required this.startTime,
