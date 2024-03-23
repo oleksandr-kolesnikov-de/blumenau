@@ -6,7 +6,7 @@
 import 'package:blumenau/core/error/failure.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
-import 'package:blumenau/features/table/data/models/schedule_item_model.dart';
+import 'package:blumenau/features/table/domain/entities/schedule_item.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 
@@ -30,7 +30,7 @@ class ExchangeScheduleHiveImpl implements ExchangeSchedule {
 
   @override
   Future<Either<Failure, void>> addEntry(
-      String courtKey, ScheduleItemModel scheduleItem) async {
+      String courtKey, ScheduleItem scheduleItem) async {
     try {
       var box = await Hive.openBox(courtKey);
       await box.put(scheduleItem.key, scheduleItem);

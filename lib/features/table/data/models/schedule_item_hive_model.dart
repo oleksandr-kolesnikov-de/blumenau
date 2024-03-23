@@ -5,13 +5,13 @@
 
 // Model for Hive database
 
-import 'package:blumenau/features/table/data/models/schedule_item_model.dart';
+import 'package:blumenau/features/table/domain/entities/schedule_item.dart';
 import 'package:hive/hive.dart';
 
 part 'schedule_item_hive_model.g.dart';
 
 @HiveType(typeId: 0)
-class ScheduleItemHiveModel implements ScheduleItemModel {
+class ScheduleItemHiveModel implements ScheduleItem {
   @override
   @HiveField(0)
   late String key;
