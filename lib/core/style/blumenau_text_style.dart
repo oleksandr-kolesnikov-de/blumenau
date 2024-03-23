@@ -10,7 +10,10 @@ import 'package:flutter/material.dart';
 
 class BlumenauTextStyle {
   static const TextStyle headline = TextStyle(
-      color: Colors.grey, fontSize: 20, decoration: TextDecoration.none);
+      color: Colors.black26,
+      fontSize: 18,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.bold);
   static const TextStyle pinText = TextStyle(
     fontSize: 22,
     color: Color.fromRGBO(30, 60, 87, 1),
