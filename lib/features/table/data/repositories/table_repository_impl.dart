@@ -7,7 +7,6 @@ import 'package:blumenau/core/error/failure.dart';
 import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
-import 'package:blumenau/features/table/data/mappers/court_mapper.dart';
 import 'package:blumenau/features/table/data/mappers/schedule_mapper.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
@@ -39,7 +38,7 @@ class TableRepositoryImpl implements TableRepository {
     final result = await exchangeClubData.loadCourts();
     return result.fold(
       (failure) => Left(failure),
-      (courtModels) => Right(CourtMapper.fromModel(courtModels)),
+      (courtModels) => Right(courtModels),
     );
   }
 
