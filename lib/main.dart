@@ -10,6 +10,10 @@ import 'package:blumenau/features/table/presentation/pages/table_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// The main function of the application.
+// It initializes the Flutter framework and the service locator.
+// It runs the application.
+
 void main() async {
   // Ensure that the Flutter framework is initialized
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +22,10 @@ void main() async {
 
   runApp(const BlumenauApp());
 }
+
+// The main application widget.
+// It is a stateful widget that initializes the BLoC provider
+// and the main page of the application.
 
 class BlumenauApp extends StatefulWidget {
   const BlumenauApp({super.key});
