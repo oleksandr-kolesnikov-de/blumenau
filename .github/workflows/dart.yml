@@ -21,6 +21,6 @@ jobs:
          channel: 'stable'
      - run: flutter build windows
      - uses: actions/upload-artifact@master
-        with:
+       with:
           name: windows
           path: build\windows\runner\Release
