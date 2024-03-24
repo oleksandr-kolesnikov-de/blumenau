@@ -3,6 +3,7 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/config/page_view_config.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
 import 'package:blumenau/features/table/domain/entities/schedule.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -78,4 +79,11 @@ class TableState with _$TableState {
       pinVerified: pinVerified,
     );
   }
+
+  // Preprocessing of PageView.builder parameters.
+  int get pageCount => (courts.length / PageViewConfig.itemsPerPage).ceil();
+  int startIndex(int pageIndex) => pageIndex * PageViewConfig.itemsPerPage;
+  int endIndex(int pageIndex) =>
+      (pageIndex * PageViewConfig.itemsPerPage + PageViewConfig.itemsPerPage)
+          .clamp(0, courts.length);
 }

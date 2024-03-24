@@ -11,7 +11,7 @@ class Literals {
   static String platz = "Platz";
   static String defaultPinCode = "1234";
   static String error = "Fehler";
-  static String unknownState = "Unbekannter Zustand";
   static String accept = "Bestätigen";
   static String cancel = "Abbrechen";
+  static String pressAnyKey = "Drücken Sie eine beliebige Taste";
 }

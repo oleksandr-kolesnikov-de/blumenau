@@ -18,4 +18,6 @@ class BlumenauTextStyle {
     fontSize: 22,
     color: Color.fromRGBO(30, 60, 87, 1),
   );
+  static const TextStyle errorText =
+      TextStyle(backgroundColor: Colors.white, fontFamily: 'Courier New');
 }

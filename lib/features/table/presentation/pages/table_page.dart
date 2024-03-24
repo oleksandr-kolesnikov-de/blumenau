@@ -3,9 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'package:blumenau/core/config/page_view_config.dart';
-import 'package:blumenau/core/literals/literals.dart';
 import 'package:blumenau/core/style/blumenau_duration.dart';
+import 'package:blumenau/core/widgets/error_screen_widget.dart';
 import 'package:blumenau/core/widgets/splash_screen_widget.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
@@ -32,36 +31,26 @@ class TablePageState extends State<TablePage> {
       if (state is TableInitialState) {
         return const SplashScreenWidget();
       } else if (state is TableErrorState) {
-        return Center(
-          child: Text(Literals.error),
-        );
+        return const ErrorScreenWidget();
       } else if (state is TableLoadingState) {
         return const SplashScreenWidget();
       } else if (state is TableLoadedState) {
-        final List<CourtWidget> courtWidgets =
-            state.courts.asMap().entries.map((entry) {
-          return CourtWidget(
-            court: entry.value,
-            schedule: state.schedule[entry.key],
-          );
-        }).toList();
-        final pageCount =
-            (courtWidgets.length / PageViewConfig.itemsPerPage).ceil();
         return Container(
           color: Colors.white,
           child: Stack(
             children: [
               PageView.builder(
                 controller: pageController,
-                itemCount: pageCount,
-                itemBuilder: (context, pageIndex) {
-                  final startIndex = pageIndex * PageViewConfig.itemsPerPage;
-                  final endIndex = (startIndex + PageViewConfig.itemsPerPage)
-                      .clamp(0, courtWidgets.length);
-                  final pageWidgets =
-                      courtWidgets.sublist(startIndex, endIndex);
+                itemCount: state.pageCount,
+                itemBuilder: (context, page) {
                   return Row(
-                    children: pageWidgets,
+                    children: List.generate(
+                      state.endIndex(page) - state.startIndex(page),
+                      (i) => CourtWidget(
+                        court: state.courts[state.startIndex(page) + i],
+                        schedule: state.schedule[state.startIndex(page) + i],
+                      ),
+                    ),
                   );
                 },
               ),
@@ -92,9 +81,7 @@ class TablePageState extends State<TablePage> {
           ),
         );
       } else {
-        return Center(
-          child: Text(Literals.unknownState),
-        );
+        return const ErrorScreenWidget();
       }
     });
   }
