@@ -57,19 +57,21 @@ class CourtWidget extends StatelessWidget {
                   });
                 },
                 onLongPress: (calendarLongPressDetails) async {
-                  showPinCodeDialog(context).then((result) {
-                    if (result is String) {
-                      context.read<TableBloc>().add(DeleteEntryTableEvent(
-                            courtKey: court.key,
-                            pinCode: result,
-                            startTime:
-                                calendarLongPressDetails.date ?? DateTime.now(),
-                            appointments:
-                                schedule.appointments as List<Appointment>,
-                            keys: schedule.keys,
-                          ));
-                    }
-                  });
+                  if (calendarLongPressDetails.appointments != null) {
+                    showPinCodeDialog(context).then((result) {
+                      if (result is String) {
+                        context.read<TableBloc>().add(DeleteEntryTableEvent(
+                              courtKey: court.key,
+                              pinCode: result,
+                              startTime: calendarLongPressDetails.date ??
+                                  DateTime.now(),
+                              appointments:
+                                  schedule.appointments as List<Appointment>,
+                              keys: schedule.keys,
+                            ));
+                      }
+                    });
+                  }
                 },
                 minDate: Utils.getTodaysMinTime(),
                 maxDate: Utils.getTodaysMaxTime(),

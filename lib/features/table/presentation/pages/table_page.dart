@@ -46,7 +46,7 @@ class TablePageState extends State<TablePage> {
           );
         }).toList();
         final pageCount =
-            (courtWidgets.length / PageViewConfig.desktopItemsPerPage).ceil();
+            (courtWidgets.length / PageViewConfig.itemsPerPage).ceil();
         return Container(
           color: Colors.white,
           child: Stack(
@@ -55,11 +55,9 @@ class TablePageState extends State<TablePage> {
                 controller: pageController,
                 itemCount: pageCount,
                 itemBuilder: (context, pageIndex) {
-                  final startIndex =
-                      pageIndex * PageViewConfig.desktopItemsPerPage;
-                  final endIndex =
-                      (startIndex + PageViewConfig.desktopItemsPerPage)
-                          .clamp(0, courtWidgets.length);
+                  final startIndex = pageIndex * PageViewConfig.itemsPerPage;
+                  final endIndex = (startIndex + PageViewConfig.itemsPerPage)
+                      .clamp(0, courtWidgets.length);
                   final pageWidgets =
                       courtWidgets.sublist(startIndex, endIndex);
                   return Row(

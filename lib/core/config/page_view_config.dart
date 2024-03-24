@@ -5,7 +5,9 @@
 
 // [PageViewConfig] is a class that contains all the configurations used in the page view.
 
+import 'dart:io';
+
 class PageViewConfig {
-  static const desktopItemsPerPage = 3;
-  static const androidItemsPerPage = 1;
+  static final itemsPerPage =
+      (Platform.isWindows || Platform.isMacOS || Platform.isLinux) ? 3 : 1;
 }

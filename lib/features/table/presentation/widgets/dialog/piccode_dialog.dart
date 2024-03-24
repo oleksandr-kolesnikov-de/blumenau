@@ -3,6 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'dart:io';
+
 import 'package:blumenau/core/style/blumanau_transition.dart';
 import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/style/blumenau_fraction.dart';
@@ -18,9 +20,12 @@ Future showPinCodeDialog(BuildContext context) async {
     transitionBuilder: BlumenauTransition.normalDialogTransition,
     pageBuilder:
         (BuildContext context, Animation<double> a1, Animation<double> a2) {
-      return const FractionallySizedBox(
-        widthFactor: BlumenauFraction.third,
-        child: PinCodeWidget(),
+      return FractionallySizedBox(
+        widthFactor:
+            (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
+                ? BlumenauFraction.third
+                : BlumenauFraction.full,
+        child: const PinCodeWidget(),
       );
     },
   );

@@ -42,8 +42,8 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       List<Schedule> schedule = [];
       bool error = false;
       if (error == false) {
-        var eitherResult1 = await loadCourts(NoParams());
-        eitherResult1.fold((left) {
+        var courtsEither = await loadCourts(NoParams());
+        courtsEither.fold((left) {
           error = true;
         }, (right) {
           courts = right;
@@ -51,10 +51,11 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       }
       if (error == false) {
         for (int i = 0; i < courts.length; i++) {
-          var eitherResult2 =
+          var scheduleEither =
               await loadSchedule(LoadScheduleParams(courts[i].key));
-          eitherResult2.fold((left) {
+          scheduleEither.fold((left) {
             error = true;
+            i = courts.length;
           }, (right) {
             schedule.add(right);
           });
@@ -67,21 +68,28 @@ class TableBloc extends Bloc<TableEvent, TableState> {
 
     on<LoadCourtsTableEvent>((event, emit) async {
       var eitherResult = await loadCourts(NoParams());
-      eitherResult.fold((left) {}, (right) {
+      eitherResult.fold((left) {
+        emit(state.error());
+      }, (right) {
         emit(state.loaded().copyWith(courts: right));
       });
     });
 
     on<LoadScheduleTableEvent>((event, emit) async {
       List<Schedule> schedule = [];
+      bool error = false;
       for (int i = 0; i < state.courts.length; i++) {
         var eitherResult =
             await loadSchedule(LoadScheduleParams(state.courts[i].key));
-        await eitherResult.fold((left) async {}, (right) async {
+        await eitherResult.fold((left) async {
+          emit(state.error());
+          i = state.courts.length;
+          error = true;
+        }, (right) async {
           schedule.add(right);
         });
       }
-      emit(state.loaded().copyWith(schedule: schedule));
+      emit(error ? state.error() : state.loaded().copyWith(schedule: schedule));
     });
 
     on<AddEntryTableEvent>((event, emit) async {
@@ -90,7 +98,9 @@ class TableBloc extends Bloc<TableEvent, TableState> {
           pinCode: event.pinCode,
           startTime: event.startTime,
           endTime: event.endTime));
-      eitherResult.fold((left) {}, (right) {
+      eitherResult.fold((left) {
+        emit(state.error());
+      }, (right) {
         add(LoadScheduleTableEvent());
       });
     });
@@ -103,14 +113,18 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       ));
       var eitherResult = await deleteEntry(DeleteEntryParams(
           courtKey: event.courtKey, pinCode: event.pinCode, key: key));
-      eitherResult.fold((left) {}, (right) {
+      eitherResult.fold((left) {
+        emit(state.error());
+      }, (right) {
         add(LoadScheduleTableEvent());
       });
     });
 
     on<TryPinCodeTableEvent>((event, emit) async {
       var eitherResult = await tryPin(TryPinParams(pin: event.pinCode));
-      eitherResult.fold((left) {}, (right) {
+      eitherResult.fold((left) {
+        emit(state.error());
+      }, (right) {
         emit(state.loaded().copyWith(pinVerified: right));
       });
     });

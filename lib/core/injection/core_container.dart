@@ -5,9 +5,10 @@
 
 // Core service locator, that contains all important classes:
 
+import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
-import 'package:blumenau/features/table/data/datasources/exchange_table_excel.dart';
+import 'package:blumenau/features/table/data/datasources/exchange_club_data_excel.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule_hive.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/data/repositories/table_repository_impl.dart';
@@ -21,7 +22,6 @@ import 'package:blumenau/features/table/domain/usecases/helpers/get_key_for_appo
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final core = GetIt.instance;
@@ -59,7 +59,6 @@ Future<void> init() async {
   core.registerLazySingleton(() => sharedPreferences);
 
   // Initialize Hive and register adapters
-  var dir = await getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
+  Hive.init(await Utils.getPath());
   Hive.registerAdapter(ScheduleItemHiveModelAdapter());
 }
