@@ -3,26 +3,26 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-// Model for the court.
+// Model for the player.
 
-import 'package:blumenau/features/table/domain/entities/court.dart';
+import 'package:blumenau/features/table/domain/entities/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CourtModel extends Court {
-  const CourtModel({required super.name, required super.key});
+class PlayerModel extends Player {
+  const PlayerModel({required super.name, required super.pinCode});
 
-  factory CourtModel.fromDocument(DocumentSnapshot doc) {
+  factory PlayerModel.fromDocument(DocumentSnapshot doc) {
     Map data = doc.data() as Map<String, dynamic>;
-    return CourtModel(
+    return PlayerModel(
       name: data['name'] ?? '',
-      key: data['key'] ?? '',
+      pinCode: data['pinCode'] ?? '',
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'key': key,
+      'pinCode': pinCode,
     };
   }
 }

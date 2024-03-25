@@ -7,8 +7,8 @@
 
 import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
+import 'package:blumenau/features/table/data/datasources/exchange_club_data_firebase.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
-import 'package:blumenau/features/table/data/datasources/exchange_club_data_hardcoded.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule_hive.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/data/repositories/table_repository_impl.dart';
@@ -53,7 +53,7 @@ Future<void> init() async {
   core.registerLazySingleton<ExchangeSchedule>(
       () => ExchangeScheduleHiveImpl());
   core.registerLazySingleton<ExchangeClubData>(
-      () => ExchangeClubDataHardcodedImpl());
+      () => ExchangeClubDataFirebaseImpl());
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -64,5 +64,12 @@ Future<void> init() async {
   Hive.registerAdapter(ScheduleItemHiveModelAdapter());
 
   // Initialize Firebase
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+    apiKey: 'AIzaSyAa5Xd4tjk_9Btq0ltnwcNDEAO70vaDt8c',
+    appId: '1:676903902251:android:f0bddd21b905758bdd9e6e',
+    messagingSenderId: '676903902251',
+    projectId: 'blumenau-77b31',
+    storageBucket: 'blumenau-77b31.appspot.com',
+  ));
 }
