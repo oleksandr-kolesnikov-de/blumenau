@@ -19,4 +19,6 @@ class HiveFailure extends Failure {}
 
 class GeneralFailure extends Failure {}
 
+class FirebaseFailure extends Failure {}
+
 class ExcelFailure extends Failure {}

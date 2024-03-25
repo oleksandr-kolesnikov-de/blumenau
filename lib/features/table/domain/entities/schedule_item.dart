@@ -10,7 +10,7 @@ class ScheduleItem {
   final String title;
   final DateTime startTime;
   final DateTime endTime;
-  ScheduleItem({
+  const ScheduleItem({
     required this.key,
     required this.title,
     required this.startTime,

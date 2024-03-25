@@ -14,4 +14,6 @@ class Literals {
   static String accept = "Bestätigen";
   static String cancel = "Abbrechen";
   static String pressAnyKey = "Drücken Sie eine beliebige Taste";
+  static String firebaseCourtsCollection = "courts";
+  static String firebasePlayerCollection = "player";
 }

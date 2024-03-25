@@ -9,7 +9,7 @@ import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data_firebase.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
-import 'package:blumenau/features/table/data/datasources/exchange_schedule_hive.dart';
+import 'package:blumenau/features/table/data/datasources/exchange_schedule_firebase.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/data/repositories/table_repository_impl.dart';
 import 'package:blumenau/features/table/domain/repositories/table_repository.dart';
@@ -51,7 +51,7 @@ Future<void> init() async {
 
   // DataSources
   core.registerLazySingleton<ExchangeSchedule>(
-      () => ExchangeScheduleHiveImpl());
+      () => ExchangeScheduleFirebaseImpl());
   core.registerLazySingleton<ExchangeClubData>(
       () => ExchangeClubDataFirebaseImpl());
 

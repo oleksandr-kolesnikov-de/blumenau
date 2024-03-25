@@ -98,9 +98,10 @@ class TableBloc extends Bloc<TableEvent, TableState> {
           pinCode: event.pinCode,
           startTime: event.startTime,
           endTime: event.endTime));
-      eitherResult.fold((left) {
+      await eitherResult.fold((left) async {
         emit(state.error());
-      }, (right) {
+      }, (right) async {
+        await Future.delayed(BlumenauDuration.smallDuration);
         add(LoadScheduleTableEvent());
       });
     });
@@ -113,9 +114,10 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       ));
       var eitherResult = await deleteEntry(DeleteEntryParams(
           courtKey: event.courtKey, pinCode: event.pinCode, key: key));
-      eitherResult.fold((left) {
+      await eitherResult.fold((left) async {
         emit(state.error());
-      }, (right) {
+      }, (right) async {
+        await Future.delayed(BlumenauDuration.smallDuration);
         add(LoadScheduleTableEvent());
       });
     });
