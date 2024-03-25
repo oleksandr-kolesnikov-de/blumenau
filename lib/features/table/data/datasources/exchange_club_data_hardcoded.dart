@@ -9,10 +9,10 @@ import 'package:blumenau/features/table/data/models/court_model.dart';
 import 'package:dartz/dartz.dart';
 
 // Implementation of the [ExchangeClubData] interface.
-// with MS Excel.
+// with hardocoded data.
 
-class ExchangeClubDataExcelImpl implements ExchangeClubData {
-  ExchangeClubDataExcelImpl();
+class ExchangeClubDataHardcodedImpl implements ExchangeClubData {
+  ExchangeClubDataHardcodedImpl();
 
   Map<String, String> hardcodedPlayersData = const {
     "Roger Federer": "1234",
@@ -21,39 +21,39 @@ class ExchangeClubDataExcelImpl implements ExchangeClubData {
     "Andy Murray": "2222",
   };
 
+  Map<String, String> hardcodedCourtsData = const {
+    "Court 1": "court1",
+    "Court 2": "court2",
+    "Court 3": "court3",
+    "Court 4": "court4",
+    "Court 5": "court5",
+    "Court 6": "court6",
+    "M1": "m1",
+    "M2": "m2",
+    "M3": "m3",
+  };
+
   @override
   Future<Either<Failure, List<CourtModel>>> loadCourts() {
     try {
-      // No MS Excel implementation yet
-      // just hardcode the list of courts
-      return Future.value(const Right([
-        CourtModel(name: "Court 1", key: "court1"),
-        CourtModel(name: "Court 2", key: "court2"),
-        CourtModel(name: "Court 3", key: "court3"),
-        CourtModel(name: "Court 4", key: "court4"),
-        CourtModel(name: "Court 5", key: "court5"),
-        CourtModel(name: "Court 6", key: "court6"),
-        CourtModel(name: "M1", key: "m1"),
-        CourtModel(name: "M2", key: "m2"),
-        CourtModel(name: "M3", key: "m3"),
-      ]));
+      return Future.value(Right(hardcodedCourtsData.entries
+          .map((entry) => CourtModel(name: entry.key, key: entry.value))
+          .toList()));
     } catch (e) {
-      return Future.value(Left(ExcelFailure()));
+      return Future.value(Left(GeneralFailure()));
     }
   }
 
   @override
   Future<Either<Failure, bool>> tryPin(String pin) {
     try {
-      // No MS Excel implementation yet
-      // just hardcode the pin code
       if (hardcodedPlayersData.containsValue(pin)) {
         return Future.value(const Right(true));
       } else {
         return Future.value(const Right(false));
       }
     } catch (e) {
-      return Future.value(Left(ExcelFailure()));
+      return Future.value(Left(GeneralFailure()));
     }
   }
 
@@ -67,7 +67,7 @@ class ExchangeClubDataExcelImpl implements ExchangeClubData {
         return Future.value(const Right(""));
       }
     } catch (e) {
-      return Future.value(Left(ExcelFailure()));
+      return Future.value(Left(GeneralFailure()));
     }
   }
 }

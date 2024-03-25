@@ -8,7 +8,7 @@
 import 'package:blumenau/core/utils/utils.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_club_data.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule.dart';
-import 'package:blumenau/features/table/data/datasources/exchange_club_data_excel.dart';
+import 'package:blumenau/features/table/data/datasources/exchange_club_data_hardcoded.dart';
 import 'package:blumenau/features/table/data/datasources/exchange_schedule_hive.dart';
 import 'package:blumenau/features/table/data/models/schedule_item_hive_model.dart';
 import 'package:blumenau/features/table/data/repositories/table_repository_impl.dart';
@@ -52,7 +52,7 @@ Future<void> init() async {
   core.registerLazySingleton<ExchangeSchedule>(
       () => ExchangeScheduleHiveImpl());
   core.registerLazySingleton<ExchangeClubData>(
-      () => ExchangeClubDataExcelImpl());
+      () => ExchangeClubDataHardcodedImpl());
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
