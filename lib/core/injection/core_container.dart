@@ -20,6 +20,7 @@ import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/try_pin.dart';
 import 'package:blumenau/features/table/domain/usecases/helpers/get_key_for_appointment.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,4 +62,7 @@ Future<void> init() async {
   // Initialize Hive and register adapters
   Hive.init(await Utils.getPath());
   Hive.registerAdapter(ScheduleItemHiveModelAdapter());
+
+  // Initialize Firebase
+  await Firebase.initializeApp();
 }
