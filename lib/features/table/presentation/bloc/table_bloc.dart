@@ -37,7 +37,6 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       : super(TableInitialState()) {
     on<LoadTableEvent>((event, emit) async {
       await Future.delayed(BlumenauDuration.bigDuration);
-      emit(state.loading());
       List<Court> courts = [];
       List<Schedule> schedule = [];
       bool error = false;
@@ -93,6 +92,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     });
 
     on<AddEntryTableEvent>((event, emit) async {
+      emit(state.loading());
       var eitherResult = await addEntry(AddEntryParams(
           courtKey: event.courtKey,
           pinCode: event.pinCode,
@@ -101,7 +101,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       await eitherResult.fold((left) async {
         emit(state.error());
       }, (right) async {
-        await Future.delayed(BlumenauDuration.smallDuration);
+        await Future.delayed(BlumenauDuration.verySmallDuration);
         add(LoadScheduleTableEvent());
       });
     });

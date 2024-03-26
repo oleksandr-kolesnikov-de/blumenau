@@ -5,6 +5,7 @@
 
 import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/widgets/error_screen_widget.dart';
+import 'package:blumenau/core/widgets/loading_screen_widget.dart';
 import 'package:blumenau/core/widgets/splash_screen_widget.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
@@ -33,7 +34,7 @@ class TablePageState extends State<TablePage> {
       } else if (state is TableErrorState) {
         return const ErrorScreenWidget();
       } else if (state is TableLoadingState) {
-        return const SplashScreenWidget();
+        return const LoadingScreenWidget();
       } else if (state is TableLoadedState) {
         return Container(
           color: Colors.white,

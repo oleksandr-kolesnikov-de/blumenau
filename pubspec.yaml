@@ -29,6 +29,7 @@ dependencies:
   firebase_core: ^2.27.1  
   firebase_auth: ^4.4.0   
   cloud_firestore: ^4.15.9 
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   integration_test:
@@ -42,4 +43,8 @@ flutter:
   assets:
     - assets/logo.png
 
-
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
