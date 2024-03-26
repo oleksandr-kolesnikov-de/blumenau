@@ -3,6 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'dart:async';
+
 import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/use_case/no_params.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
@@ -31,10 +33,23 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   TryPin tryPin;
   // Helpers
   GetKeyForAppointment getKeyForAppointment;
+  // Other variables
+  late Timer timer;
+
+  // Dispose the timer when the bloc is closed
+  void dispose() {
+    timer.cancel();
+    super.close();
+  }
 
   TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry,
       this.tryPin, this.getKeyForAppointment)
       : super(TableInitialState()) {
+    // Start update the table every 30 seconds
+    timer = Timer.periodic(BlumenauDuration.updateDuration, (Timer t) {
+      add(LoadTableEvent());
+    });
+
     on<LoadTableEvent>((event, emit) async {
       await Future.delayed(BlumenauDuration.bigDuration);
       List<Court> courts = [];

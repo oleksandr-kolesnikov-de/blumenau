@@ -12,4 +12,5 @@ class BlumenauDuration {
   static const Duration smallDuration = Duration(seconds: 1);
   static const Duration normalDuration = Duration(seconds: 2);
   static const Duration bigDuration = Duration(seconds: 3);
+  static const Duration updateDuration = Duration(seconds: 30);
 }

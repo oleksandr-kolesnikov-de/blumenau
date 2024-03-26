@@ -3,6 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'dart:async';
+
 import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/widgets/error_screen_widget.dart';
 import 'package:blumenau/core/widgets/loading_screen_widget.dart';
@@ -25,6 +27,12 @@ class TablePage extends StatefulWidget {
 
 class TablePageState extends State<TablePage> {
   final PageController pageController = PageController();
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
