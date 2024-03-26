@@ -3,9 +3,9 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'dart:async';
-
+import 'package:blumenau/core/config/page_view_config.dart';
 import 'package:blumenau/core/style/blumenau_duration.dart';
+import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/widgets/error_screen_widget.dart';
 import 'package:blumenau/core/widgets/loading_screen_widget.dart';
 import 'package:blumenau/core/widgets/splash_screen_widget.dart';
@@ -27,7 +27,6 @@ class TablePage extends StatefulWidget {
 
 class TablePageState extends State<TablePage> {
   final PageController pageController = PageController();
-  late Timer timer;
 
   @override
   void initState() {
@@ -36,62 +35,77 @@ class TablePageState extends State<TablePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TableBloc, TableState>(builder: (context, state) {
-      if (state is TableInitialState) {
-        return const SplashScreenWidget();
-      } else if (state is TableErrorState) {
-        return const ErrorScreenWidget();
-      } else if (state is TableLoadingState) {
-        return const LoadingScreenWidget();
-      } else if (state is TableLoadedState) {
-        return Container(
-          color: Colors.white,
-          child: Stack(
-            children: [
-              PageView.builder(
-                controller: pageController,
-                itemCount: state.pageCount,
-                itemBuilder: (context, page) {
-                  return Row(
-                    children: List.generate(
-                      state.endIndex(page) - state.startIndex(page),
-                      (i) => CourtWidget(
-                        court: state.courts[state.startIndex(page) + i],
-                        schedule: state.schedule[state.startIndex(page) + i],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return LayoutBuilder(builder: (context, constraints) {
+      return OrientationBuilder(builder: (context, orientation) {
+        PageViewConfig.instance.itemsPerPage =
+            (orientation == Orientation.landscape) ? 3 : 1;
+        return BlocBuilder<TableBloc, TableState>(builder: (context, state) {
+          if (state is TableInitialState) {
+            return const SplashScreenWidget();
+          } else if (state is TableErrorState) {
+            return const ErrorScreenWidget();
+          } else if (state is TableLoadingState) {
+            return const LoadingScreenWidget();
+          } else if (state is TableLoadedState) {
+            return Container(
+              color: Colors.white,
+              child: Stack(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      pageController.previousPage(
-                        duration: BlumenauDuration.animationDuration,
-                        curve: Curves.easeInOut,
-                      );
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: BlumenauPadding.veryBigPadding),
+                    child: PageView.builder(
+                      controller: pageController,
+                      itemCount: state.pageCount,
+                      itemBuilder: (context, page) {
+                        return Row(
+                          children: List.generate(
+                            state.endIndex(page) - state.startIndex(page),
+                            (i) => CourtWidget(
+                              court: state.courts[state.startIndex(page) + i],
+                              schedule:
+                                  state.schedule[state.startIndex(page) + i],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_forward),
-                    onPressed: () {
-                      pageController.nextPage(
-                        duration: BlumenauDuration.animationDuration,
-                        curve: Curves.easeInOut,
-                      );
-                    },
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: BlumenauPadding.bigPadding),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back),
+                          onPressed: () {
+                            pageController.previousPage(
+                              duration: BlumenauDuration.animationDuration,
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.arrow_forward),
+                          onPressed: () {
+                            pageController.nextPage(
+                              duration: BlumenauDuration.animationDuration,
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ],
-          ),
-        );
-      } else {
-        return const ErrorScreenWidget();
-      }
+            );
+          } else {
+            return const ErrorScreenWidget();
+          }
+        });
+      });
     });
   }
 }

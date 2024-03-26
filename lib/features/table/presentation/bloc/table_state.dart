@@ -81,9 +81,12 @@ class TableState with _$TableState {
   }
 
   // Preprocessing of PageView.builder parameters.
-  int get pageCount => (courts.length / PageViewConfig.itemsPerPage).ceil();
-  int startIndex(int pageIndex) => pageIndex * PageViewConfig.itemsPerPage;
+  int get pageCount =>
+      (courts.length / PageViewConfig.instance.itemsPerPage).ceil();
+  int startIndex(int pageIndex) =>
+      pageIndex * PageViewConfig.instance.itemsPerPage;
   int endIndex(int pageIndex) =>
-      (pageIndex * PageViewConfig.itemsPerPage + PageViewConfig.itemsPerPage)
+      (pageIndex * PageViewConfig.instance.itemsPerPage +
+              PageViewConfig.instance.itemsPerPage)
           .clamp(0, courts.length);
 }

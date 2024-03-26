@@ -33,6 +33,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   TryPin tryPin;
   // Helpers
   GetKeyForAppointment getKeyForAppointment;
+
   // Other variables
   late Timer timer;
 
