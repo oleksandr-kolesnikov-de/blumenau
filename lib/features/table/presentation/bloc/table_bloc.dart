@@ -123,6 +123,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     });
 
     on<DeleteEntryTableEvent>((event, emit) async {
+      emit(state.loading());
       String key = getKeyForAppointment(GetKeyForAppointmentParams(
         time: event.startTime,
         appointments: event.appointments,
