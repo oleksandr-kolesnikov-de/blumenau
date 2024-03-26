@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "676903902251",
+    "project_id": "blumenau-77b31",
+    "storage_bucket": "blumenau-77b31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676903902251:android:f0bddd21b905758bdd9e6e",
+        "android_client_info": {
+          "package_name": "com.example.blumenau"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5Xd4tjk_9Btq0ltnwcNDEAO70vaDt8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1" 
+}
