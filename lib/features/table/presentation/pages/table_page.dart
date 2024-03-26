@@ -3,10 +3,7 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
-import 'dart:io';
-
 import 'package:blumenau/core/config/page_view_config.dart';
-import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/widgets/error_screen_widget.dart';
 import 'package:blumenau/core/widgets/loading_screen_widget.dart';
@@ -51,59 +48,24 @@ class TablePageState extends State<TablePage> {
           } else if (state is TableLoadedState) {
             return Container(
               color: Colors.white,
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: BlumenauPadding.veryBigPadding),
-                    child: PageView.builder(
-                      controller: pageController,
-                      itemCount: state.pageCount,
-                      itemBuilder: (context, page) {
-                        return Row(
-                          children: List.generate(
-                            state.endIndex(page) - state.startIndex(page),
-                            (i) => CourtWidget(
-                              court: state.courts[state.startIndex(page) + i],
-                              schedule:
-                                  state.schedule[state.startIndex(page) + i],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  if (Platform.isWindows ||
-                      Platform.isLinux ||
-                      Platform.isMacOS)
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: BlumenauPadding.veryBigPadding),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back),
-                            onPressed: () {
-                              pageController.previousPage(
-                                duration: BlumenauDuration.animationDuration,
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.arrow_forward),
-                            onPressed: () {
-                              pageController.nextPage(
-                                duration: BlumenauDuration.animationDuration,
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                          ),
-                        ],
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: BlumenauPadding.veryBigPadding),
+                child: PageView.builder(
+                  controller: pageController,
+                  itemCount: state.pageCount,
+                  itemBuilder: (context, page) {
+                    return Row(
+                      children: List.generate(
+                        state.endIndex(page) - state.startIndex(page),
+                        (i) => CourtWidget(
+                          court: state.courts[state.startIndex(page) + i],
+                          schedule: state.schedule[state.startIndex(page) + i],
+                        ),
                       ),
-                    ),
-                ],
+                    );
+                  },
+                ),
               ),
             );
           } else {
