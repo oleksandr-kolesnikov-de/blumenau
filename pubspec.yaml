@@ -1,6 +1,6 @@
 name: blumenau
 description: "Blumenau tennis club timetable"
-version: 1.0.2+1
+version: 1.0.3+1
 
 environment:
   sdk: '>=3.3.0-152.0.dev <4.0.0'
