@@ -3,6 +3,8 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'dart:io';
+
 import 'package:blumenau/core/config/page_view_config.dart';
 import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
@@ -71,33 +73,36 @@ class TablePageState extends State<TablePage> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: BlumenauPadding.bigPadding),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back),
-                          onPressed: () {
-                            pageController.previousPage(
-                              duration: BlumenauDuration.animationDuration,
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.arrow_forward),
-                          onPressed: () {
-                            pageController.nextPage(
-                              duration: BlumenauDuration.animationDuration,
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                        ),
-                      ],
+                  if (Platform.isWindows ||
+                      Platform.isLinux ||
+                      Platform.isMacOS)
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: BlumenauPadding.veryBigPadding),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.arrow_back),
+                            onPressed: () {
+                              pageController.previousPage(
+                                duration: BlumenauDuration.animationDuration,
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.arrow_forward),
+                            onPressed: () {
+                              pageController.nextPage(
+                                duration: BlumenauDuration.animationDuration,
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
                 ],
               ),
             );

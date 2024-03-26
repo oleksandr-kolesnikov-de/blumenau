@@ -13,4 +13,5 @@ class BlumenauPadding {
   static const double normalPadding = 16;
   static const double bigPadding = 24;
   static const double veryBigPadding = 48;
+  static const double hugePadding = 100;
 }
