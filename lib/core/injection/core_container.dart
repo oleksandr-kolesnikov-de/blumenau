@@ -20,6 +20,7 @@ import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/try_pin.dart';
 import 'package:blumenau/features/table/domain/usecases/helpers/get_key_for_appointment.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
@@ -53,7 +54,7 @@ Future<void> init() async {
   core.registerLazySingleton<ExchangeSchedule>(
       () => ExchangeScheduleFirebaseImpl());
   core.registerLazySingleton<ExchangeClubData>(
-      () => ExchangeClubDataFirebaseImpl());
+      () => ExchangeClubDataFirebaseImpl(core()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -72,4 +73,6 @@ Future<void> init() async {
     projectId: 'blumenau-77b31',
     storageBucket: 'blumenau-77b31.appspot.com',
   ));
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  core.registerLazySingleton(() => firestore);
 }

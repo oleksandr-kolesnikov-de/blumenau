@@ -14,11 +14,11 @@ import 'package:dartz/dartz.dart';
 // with hardcoded data.
 
 class ExchangeClubDataFirebaseImpl implements ExchangeClubData {
-  ExchangeClubDataFirebaseImpl();
+  final FirebaseFirestore firestore;
+  ExchangeClubDataFirebaseImpl(this.firestore);
 
   @override
   Future<Either<Failure, List<CourtModel>>> loadCourts() async {
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     try {
       QuerySnapshot querySnapshot =
           await firestore.collection(Literals.firebaseCourtsCollection).get();
@@ -32,7 +32,6 @@ class ExchangeClubDataFirebaseImpl implements ExchangeClubData {
 
   @override
   Future<Either<Failure, bool>> tryPin(String pin) async {
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     try {
       QuerySnapshot querySnapshot =
           await firestore.collection(Literals.firebasePlayerCollection).get();
@@ -49,7 +48,6 @@ class ExchangeClubDataFirebaseImpl implements ExchangeClubData {
 
   @override
   Future<Either<Failure, String>> getPlayerName(String pin) async {
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     try {
       QuerySnapshot querySnapshot =
           await firestore.collection(Literals.firebasePlayerCollection).get();
