@@ -52,7 +52,7 @@ Future<void> init() async {
 
   // DataSources
   core.registerLazySingleton<ExchangeSchedule>(
-      () => ExchangeScheduleFirebaseImpl());
+      () => ExchangeScheduleFirebaseImpl(core()));
   core.registerLazySingleton<ExchangeClubData>(
       () => ExchangeClubDataFirebaseImpl(core()));
 
