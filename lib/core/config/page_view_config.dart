@@ -8,6 +8,6 @@
 class PageViewConfig {
   static PageViewConfig instance = PageViewConfig._internal();
   PageViewConfig._internal();
-  final double pageViewSensability = 50;
+  final double pageViewSensitivity = 50.0;
   int itemsPerPage = 1;
 }
