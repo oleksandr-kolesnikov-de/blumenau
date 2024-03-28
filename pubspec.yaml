@@ -30,6 +30,7 @@ dependencies:
   firebase_auth: ^4.4.0   
   cloud_firestore: ^4.15.9 
   flutter_launcher_icons: ^0.13.1
+  gesture_x_detector: ^1.1.1
 
 dev_dependencies:
   integration_test:

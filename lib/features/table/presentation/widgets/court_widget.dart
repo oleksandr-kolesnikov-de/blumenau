@@ -3,6 +3,7 @@
 /*                                          © 2024                                               */
 /* ********************************************************************************************* */
 
+import 'package:blumenau/core/gestures/page_view_gesture_wrapper.dart';
 import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/style/blumenau_text_style.dart';
 import 'package:blumenau/core/utils/utils.dart';
@@ -20,10 +21,12 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 class CourtWidget extends StatelessWidget {
   final Court court;
   final Schedule schedule;
+  final PageController pageController;
   const CourtWidget({
     super.key,
     required this.court,
     required this.schedule,
+    required this.pageController,
   });
 
   @override
@@ -38,44 +41,47 @@ class CourtWidget extends StatelessWidget {
               child: Text(court.name, style: BlumenauTextStyle.headline),
             ),
             Expanded(
-              child: SfCalendar(
-                dataSource: schedule,
-                headerHeight: BlumenauPadding.zeroPadding,
-                viewHeaderHeight: BlumenauPadding.zeroPadding,
-                view: CalendarView.day,
-                firstDayOfWeek: DateTime.now().weekday,
-                onTap: (CalendarTapDetails details) async {
-                  showPinCodeDialog(context).then((result) {
-                    if (result is String) {
-                      context.read<TableBloc>().add(AddEntryTableEvent(
-                            courtKey: court.key,
-                            pinCode: result,
-                            startTime: details.date ?? DateTime.now(),
-                            endTime: Utils.getTimePlusHour(details),
-                          ));
-                    }
-                  });
-                },
-                onLongPress: (calendarLongPressDetails) async {
-                  if (calendarLongPressDetails.appointments != null) {
+              child: PageViewGestureWrapper(
+                pageController: pageController,
+                child: SfCalendar(
+                  dataSource: schedule,
+                  headerHeight: BlumenauPadding.zeroPadding,
+                  viewHeaderHeight: BlumenauPadding.zeroPadding,
+                  view: CalendarView.day,
+                  firstDayOfWeek: DateTime.now().weekday,
+                  onTap: (CalendarTapDetails details) async {
                     showPinCodeDialog(context).then((result) {
                       if (result is String) {
-                        context.read<TableBloc>().add(DeleteEntryTableEvent(
+                        context.read<TableBloc>().add(AddEntryTableEvent(
                               courtKey: court.key,
                               pinCode: result,
-                              startTime: calendarLongPressDetails.date ??
-                                  DateTime.now(),
-                              appointments:
-                                  schedule.appointments as List<Appointment>,
-                              keys: schedule.keys,
+                              startTime: details.date ?? DateTime.now(),
+                              endTime: Utils.getTimePlusHour(details),
                             ));
                       }
                     });
-                  }
-                },
-                minDate: Utils.getTodaysMinTime(),
-                maxDate: Utils.getTodaysMaxTime(),
-                timeSlotViewSettings: Utils.getWorkingHours(),
+                  },
+                  onLongPress: (calendarLongPressDetails) async {
+                    if (calendarLongPressDetails.appointments != null) {
+                      showPinCodeDialog(context).then((result) {
+                        if (result is String) {
+                          context.read<TableBloc>().add(DeleteEntryTableEvent(
+                                courtKey: court.key,
+                                pinCode: result,
+                                startTime: calendarLongPressDetails.date ??
+                                    DateTime.now(),
+                                appointments:
+                                    schedule.appointments as List<Appointment>,
+                                keys: schedule.keys,
+                              ));
+                        }
+                      });
+                    }
+                  },
+                  minDate: Utils.getTodaysMinTime(),
+                  maxDate: Utils.getTodaysMaxTime(),
+                  timeSlotViewSettings: Utils.getWorkingHours(),
+                ),
               ),
             ),
           ],

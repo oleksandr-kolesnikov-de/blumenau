@@ -61,6 +61,7 @@ class TablePageState extends State<TablePage> {
                         (i) => CourtWidget(
                           court: state.courts[state.startIndex(page) + i],
                           schedule: state.schedule[state.startIndex(page) + i],
+                          pageController: pageController,
                         ),
                       ),
                     );
