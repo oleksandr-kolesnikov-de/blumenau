@@ -19,21 +19,27 @@ class LoadTableEvent extends TableEvent {}
 
 class LoadCourtsTableEvent extends TableEvent {}
 
-class LoadScheduleTableEvent extends TableEvent {}
+class LoadScheduleTableEvent extends TableEvent {
+  final int? preferredPage;
+  const LoadScheduleTableEvent(this.preferredPage);
+}
 
 class AddEntryTableEvent extends TableEvent {
   final String courtKey;
   final String pinCode;
   final DateTime startTime;
   final DateTime endTime;
+  final int preferredPage;
 
   const AddEntryTableEvent(
       {required this.courtKey,
       required this.pinCode,
       required this.startTime,
-      required this.endTime});
+      required this.endTime,
+      required this.preferredPage});
   @override
-  List<Object> get props => [pinCode, startTime, endTime];
+  List<Object> get props =>
+      [pinCode, startTime, endTime, courtKey, preferredPage];
 }
 
 class DeleteEntryTableEvent extends TableEvent {
@@ -42,15 +48,20 @@ class DeleteEntryTableEvent extends TableEvent {
   final List<Appointment> appointments;
   final List<String> keys;
   final DateTime startTime;
+  final String name;
+  final int preferredPage;
 
   const DeleteEntryTableEvent(
       {required this.courtKey,
       required this.pinCode,
       required this.appointments,
       required this.keys,
-      required this.startTime});
+      required this.startTime,
+      required this.name,
+      required this.preferredPage});
   @override
-  List<Object> get props => [pinCode, courtKey, appointments, keys, startTime];
+  List<Object> get props =>
+      [pinCode, courtKey, appointments, keys, startTime, name, preferredPage];
 }
 
 class TryPinCodeTableEvent extends TableEvent {

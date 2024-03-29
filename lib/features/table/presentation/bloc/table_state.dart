@@ -21,12 +21,18 @@ class TableState with _$TableState {
   factory TableState({
     @Default([]) List<Court> courts,
     @Default([]) List<Schedule> schedule,
+    @Default("") String temperature,
+    @Default("") String conditions,
+    @Default(0) int preferredPageIndex,
     @Default(false) bool pinVerified,
   }) = _TableState;
 
   factory TableState.initial({
     @Default([]) List<Court> courts,
     @Default([]) List<Schedule> schedule,
+    @Default("") String temperature,
+    @Default("") String conditions,
+    @Default(0) int preferredPageIndex,
     @Default(false) bool pinVerified,
   }) = TableInitialState;
 
@@ -34,6 +40,9 @@ class TableState with _$TableState {
     return TableState.initial(
       courts: courts,
       schedule: schedule,
+      temperature: temperature,
+      conditions: conditions,
+      preferredPageIndex: preferredPageIndex,
       pinVerified: pinVerified,
     );
   }
@@ -41,6 +50,9 @@ class TableState with _$TableState {
   factory TableState.loading({
     @Default([]) List<Court> courts,
     @Default([]) List<Schedule> schedule,
+    @Default("") String temperature,
+    @Default("") String conditions,
+    @Default(0) int preferredPageIndex,
     @Default(false) bool pinVerified,
   }) = TableLoadingState;
 
@@ -48,6 +60,9 @@ class TableState with _$TableState {
     return TableState.loading(
       courts: courts,
       schedule: schedule,
+      temperature: temperature,
+      conditions: conditions,
+      preferredPageIndex: preferredPageIndex,
       pinVerified: pinVerified,
     );
   }
@@ -55,6 +70,9 @@ class TableState with _$TableState {
   factory TableState.loaded({
     @Default([]) List<Court> courts,
     @Default([]) List<Schedule> schedule,
+    @Default("") String temperature,
+    @Default("") String conditions,
+    @Default(0) int preferredPageIndex,
     @Default(false) bool pinVerified,
   }) = TableLoadedState;
 
@@ -62,6 +80,9 @@ class TableState with _$TableState {
     return TableState.loaded(
       courts: courts,
       schedule: schedule,
+      temperature: temperature,
+      conditions: conditions,
+      preferredPageIndex: preferredPageIndex,
       pinVerified: pinVerified,
     );
   }
@@ -69,6 +90,9 @@ class TableState with _$TableState {
   factory TableState.error({
     @Default([]) List<Court> courts,
     @Default([]) List<Schedule> schedule,
+    @Default("") String temperature,
+    @Default("") String conditions,
+    @Default(0) int preferredPageIndex,
     @Default(false) bool pinVerified,
   }) = TableErrorState;
 
@@ -76,6 +100,9 @@ class TableState with _$TableState {
     return TableState.error(
       courts: courts,
       schedule: schedule,
+      temperature: temperature,
+      conditions: conditions,
+      preferredPageIndex: preferredPageIndex,
       pinVerified: pinVerified,
     );
   }

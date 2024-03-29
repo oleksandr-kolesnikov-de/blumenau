@@ -20,6 +20,7 @@ void main() {
         Appointment(
           startTime: DateTime(2024, 3, 23, 8, 0),
           endTime: DateTime(2024, 3, 23, 9, 0),
+          subject: 'Andy Roddick',
         ),
         Appointment(
           startTime: DateTime(2024, 3, 23, 9, 0),
@@ -29,10 +30,12 @@ void main() {
 
       final keys = ['key1', 'key2'];
       final timeToFind = DateTime(2024, 3, 23, 8, 0);
+      const nameToFind = 'Andy Roddick';
 
       // Define parameters
       final params = GetKeyForAppointmentParams(
         time: timeToFind,
+        name: nameToFind,
         appointments: appointments,
         keys: keys,
       );
@@ -57,10 +60,12 @@ void main() {
 
       final keys = ['key1'];
       final timeToFind = DateTime(2024, 3, 23, 9, 0);
+      const nameToFind = 'Andy Roddick';
 
       // Define parameters
       final params = GetKeyForAppointmentParams(
         time: timeToFind,
+        name: nameToFind,
         appointments: appointments,
         keys: keys,
       );

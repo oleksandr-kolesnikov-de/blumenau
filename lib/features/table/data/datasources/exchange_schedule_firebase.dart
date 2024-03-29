@@ -26,7 +26,7 @@ class ExchangeScheduleFirebaseImpl implements ExchangeSchedule {
           .map((doc) => ScheduleItemFirestoreModel.fromDocument(doc))
           .toList()));
     } catch (e) {
-      return Future.value(Left(FirebaseFailure())); 
+      return Future.value(Left(FirebaseFailure()));
     }
   }
 
@@ -41,7 +41,7 @@ class ExchangeScheduleFirebaseImpl implements ExchangeSchedule {
       });
       return Future.value(const Right(null));
     } catch (e) {
-      return Future.value(Left(FirebaseFailure())); 
+      return Future.value(Left(FirebaseFailure()));
     }
   }
 
@@ -54,10 +54,9 @@ class ExchangeScheduleFirebaseImpl implements ExchangeSchedule {
       if (documentSnapshot['title'] == name) {
         await firestore.collection(courtKey).doc(key).delete();
       }
-
       return Future.value(const Right(null));
     } catch (e) {
-      return Future.value(Left(FirebaseFailure())); 
+      return Future.value(Left(FirebaseFailure()));
     }
   }
 }

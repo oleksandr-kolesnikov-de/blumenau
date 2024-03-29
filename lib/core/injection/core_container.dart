@@ -25,6 +25,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather/weather.dart';
 
 final core = GetIt.instance;
 
@@ -34,7 +35,7 @@ Future<void> init() async {
   // BLoC
 
   core.registerFactory(
-      () => TableBloc(core(), core(), core(), core(), core(), core()));
+      () => TableBloc(core(), core(), core(), core(), core(), core(), core()));
 
   // Table UseCases
   core.registerLazySingleton(() => LoadSchedule(core()));
@@ -73,6 +74,13 @@ Future<void> init() async {
     projectId: 'blumenau-77b31',
     storageBucket: 'blumenau-77b31.appspot.com',
   ));
+
+  // Weather
+  WeatherFactory weatherFactory = WeatherFactory(
+      "71ed83f86f2fdce5bdb309732655986b",
+      language: Language.GERMAN);
+  core.registerLazySingleton(() => weatherFactory);
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   core.registerLazySingleton(() => firestore);
 }

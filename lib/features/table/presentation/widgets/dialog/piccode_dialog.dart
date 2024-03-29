@@ -12,8 +12,9 @@ import 'package:blumenau/features/table/presentation/widgets/pincode_widget.dart
 import 'package:flutter/material.dart';
 
 // [showPinCodeDialog] is a function that shows a dialog with a [PinCodeWidget] widget.
+enum PinCodeDialogType { addEntry, deleteEntry }
 
-Future showPinCodeDialog(BuildContext context) async {
+Future showPinCodeDialog(BuildContext context, PinCodeDialogType type) async {
   return showGeneralDialog(
     context: context,
     transitionDuration: BlumenauDuration.animationDuration,
@@ -25,7 +26,7 @@ Future showPinCodeDialog(BuildContext context) async {
             (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
                 ? BlumenauFraction.third
                 : BlumenauFraction.full,
-        child: const PinCodeWidget(),
+        child: PinCodeWidget(type: type),
       );
     },
   );

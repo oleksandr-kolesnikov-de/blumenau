@@ -19,6 +19,7 @@ import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:weather/weather.dart';
 part 'table_event.dart';
 
 // [TableBloc] is a BLoC that manages the state of the table screen.
@@ -34,6 +35,9 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   // Helpers
   GetKeyForAppointment getKeyForAppointment;
 
+  // Weather
+  WeatherFactory weatherFactory;
+
   // Other variables
   late Timer timer;
 
@@ -44,7 +48,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   }
 
   TableBloc(this.loadSchedule, this.loadCourts, this.addEntry, this.deleteEntry,
-      this.tryPin, this.getKeyForAppointment)
+      this.tryPin, this.getKeyForAppointment, this.weatherFactory)
       : super(TableInitialState()) {
     // Start update the table every 30 seconds
     timer = Timer.periodic(BlumenauDuration.updateDuration, (Timer t) {
@@ -52,33 +56,42 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     });
 
     on<LoadTableEvent>((event, emit) async {
-      await Future.delayed(BlumenauDuration.bigDuration);
-      List<Court> courts = [];
-      List<Schedule> schedule = [];
-      bool error = false;
-      if (error == false) {
-        var courtsEither = await loadCourts(NoParams());
-        courtsEither.fold((left) {
-          error = true;
-        }, (right) {
-          courts = right;
-        });
-      }
-      if (error == false) {
-        for (int i = 0; i < courts.length; i++) {
-          var scheduleEither =
-              await loadSchedule(LoadScheduleParams(courts[i].key));
-          scheduleEither.fold((left) {
+      if (state is! TableLoadingState) {
+        await Future.delayed(BlumenauDuration.normalDuration);
+        List<Court> courts = [];
+        List<Schedule> schedule = [];
+        bool error = false;
+        if (error == false) {
+          var courtsEither = await loadCourts(NoParams());
+          courtsEither.fold((left) {
             error = true;
-            i = courts.length;
           }, (right) {
-            schedule.add(right);
+            courts = right;
           });
         }
+        if (error == false) {
+          for (int i = 0; i < courts.length; i++) {
+            var scheduleEither =
+                await loadSchedule(LoadScheduleParams(courts[i].key));
+            scheduleEither.fold((left) {
+              error = true;
+              i = courts.length;
+            }, (right) {
+              schedule.add(right);
+            });
+          }
+        }
+        Weather w = await weatherFactory.currentWeatherByCityName("Hamburg");
+        emit(error
+            ? state.error()
+            : state.loaded().copyWith(
+                  courts: courts,
+                  schedule: schedule,
+                  temperature: w.temperature?.celsius?.toStringAsFixed(2) ??
+                      "Not available",
+                  conditions: w.weatherDescription ?? "Not available",
+                ));
       }
-      emit(error
-          ? state.error()
-          : state.loaded().copyWith(courts: courts, schedule: schedule));
     });
 
     on<LoadCourtsTableEvent>((event, emit) async {
@@ -104,7 +117,11 @@ class TableBloc extends Bloc<TableEvent, TableState> {
           schedule.add(right);
         });
       }
-      emit(error ? state.error() : state.loaded().copyWith(schedule: schedule));
+      emit(error
+          ? state.error()
+          : state.loaded().copyWith(
+              schedule: schedule,
+              preferredPageIndex: event.preferredPage ?? 0));
     });
 
     on<AddEntryTableEvent>((event, emit) async {
@@ -117,8 +134,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       await eitherResult.fold((left) async {
         emit(state.error());
       }, (right) async {
-        await Future.delayed(BlumenauDuration.verySmallDuration);
-        add(LoadScheduleTableEvent());
+        add(LoadScheduleTableEvent(event.preferredPage));
       });
     });
 
@@ -126,6 +142,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       emit(state.loading());
       String key = getKeyForAppointment(GetKeyForAppointmentParams(
         time: event.startTime,
+        name: event.name,
         appointments: event.appointments,
         keys: event.keys,
       ));
@@ -134,8 +151,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
       await eitherResult.fold((left) async {
         emit(state.error());
       }, (right) async {
-        await Future.delayed(BlumenauDuration.smallDuration);
-        add(LoadScheduleTableEvent());
+        add(LoadScheduleTableEvent(event.preferredPage));
       });
     });
 

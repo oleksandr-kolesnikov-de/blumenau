@@ -14,8 +14,9 @@ class GetKeyForAppointment extends Helper<String, GetKeyForAppointmentParams> {
 
   @override
   String call(GetKeyForAppointmentParams params) {
-    for (int i = 0; i < params.appointments.length; i++) {
-      if (params.appointments[i].startTime == params.time) {
+    for (int i = 0; i < params.keys.length; i++) {
+      if ((params.appointments[i].startTime == params.time) &&
+          (params.appointments[i].subject == params.name)) {
         return params.keys[i];
       }
     }
@@ -25,13 +26,15 @@ class GetKeyForAppointment extends Helper<String, GetKeyForAppointmentParams> {
 
 class GetKeyForAppointmentParams extends Equatable {
   final DateTime time;
+  final String name;
   final List<Appointment> appointments;
   final List<String> keys;
   const GetKeyForAppointmentParams({
     required this.time,
+    required this.name,
     required this.appointments,
     required this.keys,
   });
   @override
-  List<Object> get props => [time, appointments, keys];
+  List<Object> get props => [time, name, appointments, keys];
 }

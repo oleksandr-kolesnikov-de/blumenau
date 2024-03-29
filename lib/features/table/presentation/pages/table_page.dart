@@ -4,13 +4,12 @@
 /* ********************************************************************************************* */
 
 import 'package:blumenau/core/config/page_view_config.dart';
-import 'package:blumenau/core/style/blumenau_padding.dart';
 import 'package:blumenau/core/widgets/error_screen_widget.dart';
-import 'package:blumenau/core/widgets/loading_screen_widget.dart';
 import 'package:blumenau/core/widgets/splash_screen_widget.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_bloc.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
-import 'package:blumenau/features/table/presentation/widgets/court_widget.dart';
+import 'package:blumenau/features/table/presentation/widgets/body_widget.dart';
+import 'package:blumenau/features/table/presentation/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +24,7 @@ class TablePage extends StatefulWidget {
 }
 
 class TablePageState extends State<TablePage> {
-  final PageController pageController = PageController();
+  late PageController pageController;
 
   @override
   void initState() {
@@ -37,37 +36,28 @@ class TablePageState extends State<TablePage> {
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
         PageViewConfig.instance.itemsPerPage =
-            (orientation == Orientation.landscape) ? 3 : 1;
+            (orientation == Orientation.landscape)
+                ? PageViewConfig.instance.pagesLandscape
+                : PageViewConfig.instance.pagesPortrait;
         return BlocBuilder<TableBloc, TableState>(builder: (context, state) {
           if (state is TableInitialState) {
             return const SplashScreenWidget();
           } else if (state is TableErrorState) {
             return const ErrorScreenWidget();
-          } else if (state is TableLoadingState) {
-            return const LoadingScreenWidget();
-          } else if (state is TableLoadedState) {
-            return Container(
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(top: BlumenauPadding.veryBigPadding),
-                child: PageView.builder(
-                  controller: pageController,
-                  itemCount: state.pageCount,
-                  itemBuilder: (context, page) {
-                    return Row(
-                      children: List.generate(
-                        state.endIndex(page) - state.startIndex(page),
-                        (i) => CourtWidget(
-                          court: state.courts[state.startIndex(page) + i],
-                          schedule: state.schedule[state.startIndex(page) + i],
-                          pageController: pageController,
-                        ),
-                      ),
-                    );
-                  },
+          } else if (state is TableLoadedState || state is TableLoadingState) {
+            pageController =
+                PageController(initialPage: state.preferredPageIndex);
+            return Stack(
+              children: [
+                // Background
+                Container(
+                  color: Colors.white,
                 ),
-              ),
+                // Header
+                HeaderWidget(state: state),
+                // Body with courts
+                BodyWidget(state: state, pageController: pageController),
+              ],
             );
           } else {
             return const ErrorScreenWidget();

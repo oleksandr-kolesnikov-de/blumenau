@@ -18,61 +18,139 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TableState {
   List<Court> get courts => throw _privateConstructorUsedError;
   List<Schedule> get schedule => throw _privateConstructorUsedError;
+  String get temperature => throw _privateConstructorUsedError;
+  String get conditions => throw _privateConstructorUsedError;
+  int get preferredPageIndex => throw _privateConstructorUsedError;
   bool get pinVerified => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         $default, {
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         initial,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loading,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loaded,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
     required TResult orElse(),
   }) =>
@@ -117,7 +195,13 @@ abstract class $TableStateCopyWith<$Res> {
           TableState value, $Res Function(TableState) then) =
       _$TableStateCopyWithImpl<$Res, TableState>;
   @useResult
-  $Res call({List<Court> courts, List<Schedule> schedule, bool pinVerified});
+  $Res call(
+      {List<Court> courts,
+      List<Schedule> schedule,
+      String temperature,
+      String conditions,
+      int preferredPageIndex,
+      bool pinVerified});
 }
 
 /// @nodoc
@@ -135,6 +219,9 @@ class _$TableStateCopyWithImpl<$Res, $Val extends TableState>
   $Res call({
     Object? courts = null,
     Object? schedule = null,
+    Object? temperature = null,
+    Object? conditions = null,
+    Object? preferredPageIndex = null,
     Object? pinVerified = null,
   }) {
     return _then(_value.copyWith(
@@ -146,6 +233,18 @@ class _$TableStateCopyWithImpl<$Res, $Val extends TableState>
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      conditions: null == conditions
+          ? _value.conditions
+          : conditions // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferredPageIndex: null == preferredPageIndex
+          ? _value.preferredPageIndex
+          : preferredPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       pinVerified: null == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
@@ -162,7 +261,13 @@ abstract class _$$TableStateImplCopyWith<$Res>
       __$$TableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Court> courts, List<Schedule> schedule, bool pinVerified});
+  $Res call(
+      {List<Court> courts,
+      List<Schedule> schedule,
+      String temperature,
+      String conditions,
+      int preferredPageIndex,
+      bool pinVerified});
 }
 
 /// @nodoc
@@ -178,6 +283,9 @@ class __$$TableStateImplCopyWithImpl<$Res>
   $Res call({
     Object? courts = null,
     Object? schedule = null,
+    Object? temperature = null,
+    Object? conditions = null,
+    Object? preferredPageIndex = null,
     Object? pinVerified = null,
   }) {
     return _then(_$TableStateImpl(
@@ -189,6 +297,18 @@ class __$$TableStateImplCopyWithImpl<$Res>
           ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      conditions: null == conditions
+          ? _value.conditions
+          : conditions // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferredPageIndex: null == preferredPageIndex
+          ? _value.preferredPageIndex
+          : preferredPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       pinVerified: null == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
@@ -203,6 +323,9 @@ class _$TableStateImpl extends _TableState {
   _$TableStateImpl(
       {final List<Court> courts = const [],
       final List<Schedule> schedule = const [],
+      this.temperature = "",
+      this.conditions = "",
+      this.preferredPageIndex = 0,
       this.pinVerified = false})
       : _courts = courts,
         _schedule = schedule,
@@ -228,11 +351,20 @@ class _$TableStateImpl extends _TableState {
 
   @override
   @JsonKey()
+  final String temperature;
+  @override
+  @JsonKey()
+  final String conditions;
+  @override
+  @JsonKey()
+  final int preferredPageIndex;
+  @override
+  @JsonKey()
   final bool pinVerified;
 
   @override
   String toString() {
-    return 'TableState(courts: $courts, schedule: $schedule, pinVerified: $pinVerified)';
+    return 'TableState(courts: $courts, schedule: $schedule, temperature: $temperature, conditions: $conditions, preferredPageIndex: $preferredPageIndex, pinVerified: $pinVerified)';
   }
 
   @override
@@ -242,6 +374,12 @@ class _$TableStateImpl extends _TableState {
             other is _$TableStateImpl &&
             const DeepCollectionEquality().equals(other._courts, _courts) &&
             const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature) &&
+            (identical(other.conditions, conditions) ||
+                other.conditions == conditions) &&
+            (identical(other.preferredPageIndex, preferredPageIndex) ||
+                other.preferredPageIndex == preferredPageIndex) &&
             (identical(other.pinVerified, pinVerified) ||
                 other.pinVerified == pinVerified));
   }
@@ -251,6 +389,9 @@ class _$TableStateImpl extends _TableState {
       runtimeType,
       const DeepCollectionEquality().hash(_courts),
       const DeepCollectionEquality().hash(_schedule),
+      temperature,
+      conditions,
+      preferredPageIndex,
       pinVerified);
 
   @JsonKey(ignore: true)
@@ -263,68 +404,146 @@ class _$TableStateImpl extends _TableState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         $default, {
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         initial,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loading,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loaded,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         error,
   }) {
-    return $default(courts, schedule, pinVerified);
+    return $default(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
   }) {
-    return $default?.call(courts, schedule, pinVerified);
+    return $default?.call(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(courts, schedule, pinVerified);
+      return $default(courts, schedule, temperature, conditions,
+          preferredPageIndex, pinVerified);
     }
     return orElse();
   }
@@ -374,6 +593,9 @@ abstract class _TableState extends TableState {
   factory _TableState(
       {final List<Court> courts,
       final List<Schedule> schedule,
+      final String temperature,
+      final String conditions,
+      final int preferredPageIndex,
       final bool pinVerified}) = _$TableStateImpl;
   _TableState._() : super._();
 
@@ -381,6 +603,12 @@ abstract class _TableState extends TableState {
   List<Court> get courts;
   @override
   List<Schedule> get schedule;
+  @override
+  String get temperature;
+  @override
+  String get conditions;
+  @override
+  int get preferredPageIndex;
   @override
   bool get pinVerified;
   @override
@@ -397,7 +625,13 @@ abstract class _$$TableInitialStateImplCopyWith<$Res>
       __$$TableInitialStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Court> courts, List<Schedule> schedule, bool pinVerified});
+  $Res call(
+      {List<Court> courts,
+      List<Schedule> schedule,
+      String temperature,
+      String conditions,
+      int preferredPageIndex,
+      bool pinVerified});
 }
 
 /// @nodoc
@@ -413,6 +647,9 @@ class __$$TableInitialStateImplCopyWithImpl<$Res>
   $Res call({
     Object? courts = null,
     Object? schedule = null,
+    Object? temperature = null,
+    Object? conditions = null,
+    Object? preferredPageIndex = null,
     Object? pinVerified = null,
   }) {
     return _then(_$TableInitialStateImpl(
@@ -424,6 +661,18 @@ class __$$TableInitialStateImplCopyWithImpl<$Res>
           ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      conditions: null == conditions
+          ? _value.conditions
+          : conditions // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferredPageIndex: null == preferredPageIndex
+          ? _value.preferredPageIndex
+          : preferredPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       pinVerified: null == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
@@ -438,6 +687,9 @@ class _$TableInitialStateImpl extends TableInitialState {
   _$TableInitialStateImpl(
       {final List<Court> courts = const [],
       final List<Schedule> schedule = const [],
+      this.temperature = "",
+      this.conditions = "",
+      this.preferredPageIndex = 0,
       this.pinVerified = false})
       : _courts = courts,
         _schedule = schedule,
@@ -463,11 +715,20 @@ class _$TableInitialStateImpl extends TableInitialState {
 
   @override
   @JsonKey()
+  final String temperature;
+  @override
+  @JsonKey()
+  final String conditions;
+  @override
+  @JsonKey()
+  final int preferredPageIndex;
+  @override
+  @JsonKey()
   final bool pinVerified;
 
   @override
   String toString() {
-    return 'TableState.initial(courts: $courts, schedule: $schedule, pinVerified: $pinVerified)';
+    return 'TableState.initial(courts: $courts, schedule: $schedule, temperature: $temperature, conditions: $conditions, preferredPageIndex: $preferredPageIndex, pinVerified: $pinVerified)';
   }
 
   @override
@@ -477,6 +738,12 @@ class _$TableInitialStateImpl extends TableInitialState {
             other is _$TableInitialStateImpl &&
             const DeepCollectionEquality().equals(other._courts, _courts) &&
             const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature) &&
+            (identical(other.conditions, conditions) ||
+                other.conditions == conditions) &&
+            (identical(other.preferredPageIndex, preferredPageIndex) ||
+                other.preferredPageIndex == preferredPageIndex) &&
             (identical(other.pinVerified, pinVerified) ||
                 other.pinVerified == pinVerified));
   }
@@ -486,6 +753,9 @@ class _$TableInitialStateImpl extends TableInitialState {
       runtimeType,
       const DeepCollectionEquality().hash(_courts),
       const DeepCollectionEquality().hash(_schedule),
+      temperature,
+      conditions,
+      preferredPageIndex,
       pinVerified);
 
   @JsonKey(ignore: true)
@@ -499,68 +769,146 @@ class _$TableInitialStateImpl extends TableInitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         $default, {
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         initial,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loading,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loaded,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         error,
   }) {
-    return initial(courts, schedule, pinVerified);
+    return initial(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
   }) {
-    return initial?.call(courts, schedule, pinVerified);
+    return initial?.call(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(courts, schedule, pinVerified);
+      return initial(courts, schedule, temperature, conditions,
+          preferredPageIndex, pinVerified);
     }
     return orElse();
   }
@@ -610,6 +958,9 @@ abstract class TableInitialState extends TableState {
   factory TableInitialState(
       {final List<Court> courts,
       final List<Schedule> schedule,
+      final String temperature,
+      final String conditions,
+      final int preferredPageIndex,
       final bool pinVerified}) = _$TableInitialStateImpl;
   TableInitialState._() : super._();
 
@@ -617,6 +968,12 @@ abstract class TableInitialState extends TableState {
   List<Court> get courts;
   @override
   List<Schedule> get schedule;
+  @override
+  String get temperature;
+  @override
+  String get conditions;
+  @override
+  int get preferredPageIndex;
   @override
   bool get pinVerified;
   @override
@@ -633,7 +990,13 @@ abstract class _$$TableLoadingStateImplCopyWith<$Res>
       __$$TableLoadingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Court> courts, List<Schedule> schedule, bool pinVerified});
+  $Res call(
+      {List<Court> courts,
+      List<Schedule> schedule,
+      String temperature,
+      String conditions,
+      int preferredPageIndex,
+      bool pinVerified});
 }
 
 /// @nodoc
@@ -649,6 +1012,9 @@ class __$$TableLoadingStateImplCopyWithImpl<$Res>
   $Res call({
     Object? courts = null,
     Object? schedule = null,
+    Object? temperature = null,
+    Object? conditions = null,
+    Object? preferredPageIndex = null,
     Object? pinVerified = null,
   }) {
     return _then(_$TableLoadingStateImpl(
@@ -660,6 +1026,18 @@ class __$$TableLoadingStateImplCopyWithImpl<$Res>
           ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      conditions: null == conditions
+          ? _value.conditions
+          : conditions // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferredPageIndex: null == preferredPageIndex
+          ? _value.preferredPageIndex
+          : preferredPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       pinVerified: null == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
@@ -674,6 +1052,9 @@ class _$TableLoadingStateImpl extends TableLoadingState {
   _$TableLoadingStateImpl(
       {final List<Court> courts = const [],
       final List<Schedule> schedule = const [],
+      this.temperature = "",
+      this.conditions = "",
+      this.preferredPageIndex = 0,
       this.pinVerified = false})
       : _courts = courts,
         _schedule = schedule,
@@ -699,11 +1080,20 @@ class _$TableLoadingStateImpl extends TableLoadingState {
 
   @override
   @JsonKey()
+  final String temperature;
+  @override
+  @JsonKey()
+  final String conditions;
+  @override
+  @JsonKey()
+  final int preferredPageIndex;
+  @override
+  @JsonKey()
   final bool pinVerified;
 
   @override
   String toString() {
-    return 'TableState.loading(courts: $courts, schedule: $schedule, pinVerified: $pinVerified)';
+    return 'TableState.loading(courts: $courts, schedule: $schedule, temperature: $temperature, conditions: $conditions, preferredPageIndex: $preferredPageIndex, pinVerified: $pinVerified)';
   }
 
   @override
@@ -713,6 +1103,12 @@ class _$TableLoadingStateImpl extends TableLoadingState {
             other is _$TableLoadingStateImpl &&
             const DeepCollectionEquality().equals(other._courts, _courts) &&
             const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature) &&
+            (identical(other.conditions, conditions) ||
+                other.conditions == conditions) &&
+            (identical(other.preferredPageIndex, preferredPageIndex) ||
+                other.preferredPageIndex == preferredPageIndex) &&
             (identical(other.pinVerified, pinVerified) ||
                 other.pinVerified == pinVerified));
   }
@@ -722,6 +1118,9 @@ class _$TableLoadingStateImpl extends TableLoadingState {
       runtimeType,
       const DeepCollectionEquality().hash(_courts),
       const DeepCollectionEquality().hash(_schedule),
+      temperature,
+      conditions,
+      preferredPageIndex,
       pinVerified);
 
   @JsonKey(ignore: true)
@@ -735,68 +1134,146 @@ class _$TableLoadingStateImpl extends TableLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         $default, {
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         initial,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loading,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loaded,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         error,
   }) {
-    return loading(courts, schedule, pinVerified);
+    return loading(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
   }) {
-    return loading?.call(courts, schedule, pinVerified);
+    return loading?.call(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(courts, schedule, pinVerified);
+      return loading(courts, schedule, temperature, conditions,
+          preferredPageIndex, pinVerified);
     }
     return orElse();
   }
@@ -846,6 +1323,9 @@ abstract class TableLoadingState extends TableState {
   factory TableLoadingState(
       {final List<Court> courts,
       final List<Schedule> schedule,
+      final String temperature,
+      final String conditions,
+      final int preferredPageIndex,
       final bool pinVerified}) = _$TableLoadingStateImpl;
   TableLoadingState._() : super._();
 
@@ -853,6 +1333,12 @@ abstract class TableLoadingState extends TableState {
   List<Court> get courts;
   @override
   List<Schedule> get schedule;
+  @override
+  String get temperature;
+  @override
+  String get conditions;
+  @override
+  int get preferredPageIndex;
   @override
   bool get pinVerified;
   @override
@@ -869,7 +1355,13 @@ abstract class _$$TableLoadedStateImplCopyWith<$Res>
       __$$TableLoadedStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Court> courts, List<Schedule> schedule, bool pinVerified});
+  $Res call(
+      {List<Court> courts,
+      List<Schedule> schedule,
+      String temperature,
+      String conditions,
+      int preferredPageIndex,
+      bool pinVerified});
 }
 
 /// @nodoc
@@ -885,6 +1377,9 @@ class __$$TableLoadedStateImplCopyWithImpl<$Res>
   $Res call({
     Object? courts = null,
     Object? schedule = null,
+    Object? temperature = null,
+    Object? conditions = null,
+    Object? preferredPageIndex = null,
     Object? pinVerified = null,
   }) {
     return _then(_$TableLoadedStateImpl(
@@ -896,6 +1391,18 @@ class __$$TableLoadedStateImplCopyWithImpl<$Res>
           ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      conditions: null == conditions
+          ? _value.conditions
+          : conditions // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferredPageIndex: null == preferredPageIndex
+          ? _value.preferredPageIndex
+          : preferredPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       pinVerified: null == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
@@ -910,6 +1417,9 @@ class _$TableLoadedStateImpl extends TableLoadedState {
   _$TableLoadedStateImpl(
       {final List<Court> courts = const [],
       final List<Schedule> schedule = const [],
+      this.temperature = "",
+      this.conditions = "",
+      this.preferredPageIndex = 0,
       this.pinVerified = false})
       : _courts = courts,
         _schedule = schedule,
@@ -935,11 +1445,20 @@ class _$TableLoadedStateImpl extends TableLoadedState {
 
   @override
   @JsonKey()
+  final String temperature;
+  @override
+  @JsonKey()
+  final String conditions;
+  @override
+  @JsonKey()
+  final int preferredPageIndex;
+  @override
+  @JsonKey()
   final bool pinVerified;
 
   @override
   String toString() {
-    return 'TableState.loaded(courts: $courts, schedule: $schedule, pinVerified: $pinVerified)';
+    return 'TableState.loaded(courts: $courts, schedule: $schedule, temperature: $temperature, conditions: $conditions, preferredPageIndex: $preferredPageIndex, pinVerified: $pinVerified)';
   }
 
   @override
@@ -949,6 +1468,12 @@ class _$TableLoadedStateImpl extends TableLoadedState {
             other is _$TableLoadedStateImpl &&
             const DeepCollectionEquality().equals(other._courts, _courts) &&
             const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature) &&
+            (identical(other.conditions, conditions) ||
+                other.conditions == conditions) &&
+            (identical(other.preferredPageIndex, preferredPageIndex) ||
+                other.preferredPageIndex == preferredPageIndex) &&
             (identical(other.pinVerified, pinVerified) ||
                 other.pinVerified == pinVerified));
   }
@@ -958,6 +1483,9 @@ class _$TableLoadedStateImpl extends TableLoadedState {
       runtimeType,
       const DeepCollectionEquality().hash(_courts),
       const DeepCollectionEquality().hash(_schedule),
+      temperature,
+      conditions,
+      preferredPageIndex,
       pinVerified);
 
   @JsonKey(ignore: true)
@@ -971,68 +1499,146 @@ class _$TableLoadedStateImpl extends TableLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         $default, {
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         initial,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loading,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loaded,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         error,
   }) {
-    return loaded(courts, schedule, pinVerified);
+    return loaded(courts, schedule, temperature, conditions, preferredPageIndex,
+        pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
   }) {
-    return loaded?.call(courts, schedule, pinVerified);
+    return loaded?.call(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(courts, schedule, pinVerified);
+      return loaded(courts, schedule, temperature, conditions,
+          preferredPageIndex, pinVerified);
     }
     return orElse();
   }
@@ -1082,6 +1688,9 @@ abstract class TableLoadedState extends TableState {
   factory TableLoadedState(
       {final List<Court> courts,
       final List<Schedule> schedule,
+      final String temperature,
+      final String conditions,
+      final int preferredPageIndex,
       final bool pinVerified}) = _$TableLoadedStateImpl;
   TableLoadedState._() : super._();
 
@@ -1089,6 +1698,12 @@ abstract class TableLoadedState extends TableState {
   List<Court> get courts;
   @override
   List<Schedule> get schedule;
+  @override
+  String get temperature;
+  @override
+  String get conditions;
+  @override
+  int get preferredPageIndex;
   @override
   bool get pinVerified;
   @override
@@ -1105,7 +1720,13 @@ abstract class _$$TableErrorStateImplCopyWith<$Res>
       __$$TableErrorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Court> courts, List<Schedule> schedule, bool pinVerified});
+  $Res call(
+      {List<Court> courts,
+      List<Schedule> schedule,
+      String temperature,
+      String conditions,
+      int preferredPageIndex,
+      bool pinVerified});
 }
 
 /// @nodoc
@@ -1121,6 +1742,9 @@ class __$$TableErrorStateImplCopyWithImpl<$Res>
   $Res call({
     Object? courts = null,
     Object? schedule = null,
+    Object? temperature = null,
+    Object? conditions = null,
+    Object? preferredPageIndex = null,
     Object? pinVerified = null,
   }) {
     return _then(_$TableErrorStateImpl(
@@ -1132,6 +1756,18 @@ class __$$TableErrorStateImplCopyWithImpl<$Res>
           ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      conditions: null == conditions
+          ? _value.conditions
+          : conditions // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferredPageIndex: null == preferredPageIndex
+          ? _value.preferredPageIndex
+          : preferredPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       pinVerified: null == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
@@ -1146,6 +1782,9 @@ class _$TableErrorStateImpl extends TableErrorState {
   _$TableErrorStateImpl(
       {final List<Court> courts = const [],
       final List<Schedule> schedule = const [],
+      this.temperature = "",
+      this.conditions = "",
+      this.preferredPageIndex = 0,
       this.pinVerified = false})
       : _courts = courts,
         _schedule = schedule,
@@ -1171,11 +1810,20 @@ class _$TableErrorStateImpl extends TableErrorState {
 
   @override
   @JsonKey()
+  final String temperature;
+  @override
+  @JsonKey()
+  final String conditions;
+  @override
+  @JsonKey()
+  final int preferredPageIndex;
+  @override
+  @JsonKey()
   final bool pinVerified;
 
   @override
   String toString() {
-    return 'TableState.error(courts: $courts, schedule: $schedule, pinVerified: $pinVerified)';
+    return 'TableState.error(courts: $courts, schedule: $schedule, temperature: $temperature, conditions: $conditions, preferredPageIndex: $preferredPageIndex, pinVerified: $pinVerified)';
   }
 
   @override
@@ -1185,6 +1833,12 @@ class _$TableErrorStateImpl extends TableErrorState {
             other is _$TableErrorStateImpl &&
             const DeepCollectionEquality().equals(other._courts, _courts) &&
             const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature) &&
+            (identical(other.conditions, conditions) ||
+                other.conditions == conditions) &&
+            (identical(other.preferredPageIndex, preferredPageIndex) ||
+                other.preferredPageIndex == preferredPageIndex) &&
             (identical(other.pinVerified, pinVerified) ||
                 other.pinVerified == pinVerified));
   }
@@ -1194,6 +1848,9 @@ class _$TableErrorStateImpl extends TableErrorState {
       runtimeType,
       const DeepCollectionEquality().hash(_courts),
       const DeepCollectionEquality().hash(_schedule),
+      temperature,
+      conditions,
+      preferredPageIndex,
       pinVerified);
 
   @JsonKey(ignore: true)
@@ -1207,68 +1864,146 @@ class _$TableErrorStateImpl extends TableErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         $default, {
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         initial,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loading,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         loaded,
     required TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)
         error,
   }) {
-    return error(courts, schedule, pinVerified);
+    return error(courts, schedule, temperature, conditions, preferredPageIndex,
+        pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult? Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
   }) {
-    return error?.call(courts, schedule, pinVerified);
+    return error?.call(courts, schedule, temperature, conditions,
+        preferredPageIndex, pinVerified);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         $default, {
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         initial,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loading,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         loaded,
     TResult Function(
-            List<Court> courts, List<Schedule> schedule, bool pinVerified)?
+            List<Court> courts,
+            List<Schedule> schedule,
+            String temperature,
+            String conditions,
+            int preferredPageIndex,
+            bool pinVerified)?
         error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(courts, schedule, pinVerified);
+      return error(courts, schedule, temperature, conditions,
+          preferredPageIndex, pinVerified);
     }
     return orElse();
   }
@@ -1318,6 +2053,9 @@ abstract class TableErrorState extends TableState {
   factory TableErrorState(
       {final List<Court> courts,
       final List<Schedule> schedule,
+      final String temperature,
+      final String conditions,
+      final int preferredPageIndex,
       final bool pinVerified}) = _$TableErrorStateImpl;
   TableErrorState._() : super._();
 
@@ -1325,6 +2063,12 @@ abstract class TableErrorState extends TableState {
   List<Court> get courts;
   @override
   List<Schedule> get schedule;
+  @override
+  String get temperature;
+  @override
+  String get conditions;
+  @override
+  int get preferredPageIndex;
   @override
   bool get pinVerified;
   @override

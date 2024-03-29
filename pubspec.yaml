@@ -1,6 +1,6 @@
 name: blumenau
 description: "Blumenau tennis club timetable"
-version: 1.0.3+1
+version: 1.0.4+1
 
 environment:
   sdk: '>=3.3.0-152.0.dev <4.0.0'
@@ -30,7 +30,9 @@ dependencies:
   firebase_auth: ^4.4.0   
   cloud_firestore: ^4.15.9 
   flutter_launcher_icons: ^0.13.1
+  weather: ^3.1.1
   gesture_x_detector: ^1.1.1
+  intl: ^0.19.0
 
 dev_dependencies:
   integration_test:
