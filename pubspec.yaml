@@ -1,6 +1,6 @@
 name: blumenau
 description: "Blumenau tennis club timetable"
-version: 1.0.4+1
+version: 1.0.5+1
 
 environment:
   sdk: '>=3.3.0-152.0.dev <4.0.0'
@@ -46,8 +46,13 @@ flutter:
   assets:
     - assets/logo.png
 
-flutter_launcher_icons:
-  android: "launcher_icon"
+flutter_launcher_icons: 
+  git:
+    url: https://github.com/Davenchy/flutter_launcher_icons.git
+    ref: fixMinSdkParseFlutter2.8
+  image_path: "assets/ic_launcher_foreground.png"
+  adaptive_icon_foreground: "assets/ic_launcher_foreground.png"
+  adaptive_icon_background: "assets/ic_launcher_background.png"
+  android: true
   ios: true
-  image_path: "assets/logo.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true

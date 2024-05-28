@@ -5,6 +5,7 @@
 
 import 'dart:async';
 
+import 'package:blumenau/core/error/failure.dart';
 import 'package:blumenau/core/style/blumenau_duration.dart';
 import 'package:blumenau/core/use_case/no_params.dart';
 import 'package:blumenau/features/table/domain/entities/court.dart';
@@ -16,6 +17,7 @@ import 'package:blumenau/features/table/domain/usecases/load_courts.dart';
 import 'package:blumenau/features/table/domain/usecases/load_schedule.dart';
 import 'package:blumenau/features/table/domain/usecases/try_pin.dart';
 import 'package:blumenau/features/table/presentation/bloc/table_state.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -140,28 +142,51 @@ class TableBloc extends Bloc<TableEvent, TableState> {
 
     on<DeleteEntryTableEvent>((event, emit) async {
       emit(state.loading());
-      String key = getKeyForAppointment(GetKeyForAppointmentParams(
+      // Get the keys of all appointments
+      List<String> keys = getKeyForAppointment(GetKeyForAppointmentParams(
         time: event.startTime,
         name: event.name,
         appointments: event.appointments,
         keys: event.keys,
       ));
-      var eitherResult = await deleteEntry(DeleteEntryParams(
-          courtKey: event.courtKey, pinCode: event.pinCode, key: key));
-      await eitherResult.fold((left) async {
+      // Delete all appointments with the keys
+      List<Either<Failure, void>> eitherResults = [];
+      for (int i = 0; i < keys.length; i++) {
+        var eitherResult = await deleteEntry(DeleteEntryParams(
+            courtKey: event.courtKey, pinCode: event.pinCode, key: keys[i]));
+        eitherResults.add(eitherResult);
+      }
+      keys.clear();
+      // Check if there was an error
+      bool isError = false;
+      for (int i = 0; i < eitherResults.length; i++) {
+        await eitherResults[i].fold((left) async {
+          isError = true;
+          i = eitherResults.length;
+        }, (right) async {});
+      }
+      eitherResults.clear();
+      // Emit the state
+      if (isError) {
         emit(state.error());
-      }, (right) async {
+      } else {
         add(LoadScheduleTableEvent(event.preferredPage));
-      });
+      }
     });
 
+    // Try to verify the pin code
+    // If the pin code is less than 4 digits, reset the pin code table
     on<TryPinCodeTableEvent>((event, emit) async {
-      var eitherResult = await tryPin(TryPinParams(pin: event.pinCode));
-      eitherResult.fold((left) {
-        emit(state.error());
-      }, (right) {
-        emit(state.loaded().copyWith(pinVerified: right));
-      });
+      if (event.pinCode.length < 4) {
+        add(ResetPinCodeTableEvent());
+      } else {
+        var eitherResult = await tryPin(TryPinParams(pin: event.pinCode));
+        eitherResult.fold((left) {
+          emit(state.error());
+        }, (right) {
+          emit(state.loaded().copyWith(pinVerified: right));
+        });
+      }
     });
 
     on<ResetPinCodeTableEvent>((event, emit) async {

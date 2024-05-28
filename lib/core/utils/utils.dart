@@ -37,6 +37,14 @@ class Utils {
       0,
       0);
 
+  static DateTime getCurrentHourStartTime() => DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      min(DateTime.now().hour, 21),
+      0,
+      0);
+
   static DateTime getTodaysMaxTime() => DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day, 22, 0, 0);
 

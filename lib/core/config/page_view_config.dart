@@ -10,7 +10,7 @@ class PageViewConfig {
   PageViewConfig._internal();
   int itemsPerPage = 1;
   final int pagesPortrait = 1;
-  final int pagesLandscape = 3;
+  final int pagesLandscape = 2;
   final double distanceSensitivity = 50.0;
   final double velocitySensitivity = 5.0;
 }

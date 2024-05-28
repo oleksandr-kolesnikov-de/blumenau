@@ -7,20 +7,23 @@ import 'package:blumenau/core/use_case/helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-// [GetKeyForAppointment] is a helper function that returns the key of the appointment.
+// [GetKeyForAppointment] is a helper function that returns
+// the keys of the appointments that have the same time and name.
 
-class GetKeyForAppointment extends Helper<String, GetKeyForAppointmentParams> {
+class GetKeyForAppointment
+    extends Helper<List<String>, GetKeyForAppointmentParams> {
   GetKeyForAppointment();
 
   @override
-  String call(GetKeyForAppointmentParams params) {
+  List<String> call(GetKeyForAppointmentParams params) {
+    List<String> keys = [];
     for (int i = 0; i < params.keys.length; i++) {
       if ((params.appointments[i].startTime == params.time) &&
           (params.appointments[i].subject == params.name)) {
-        return params.keys[i];
+        keys.add(params.keys[i]);
       }
     }
-    return "";
+    return keys;
   }
 }
 

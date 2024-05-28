@@ -110,7 +110,8 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                         color: BlumenauColor.pinFocusedBorderColor),
                   ],
                 ),
-                onCompleted: (value) {
+                onCompleted: (value) {},
+                onChanged: (value) {
                   context
                       .read<TableBloc>()
                       .add(TryPinCodeTableEvent(pinCode: value.toString()));
@@ -152,16 +153,18 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                     const SizedBox(width: BlumenauPadding.smallPadding),
                     // Accept button
                     TextButton(
-                      onPressed: () {
-                        if (state.pinVerified) {
-                          focusNode.unfocus();
-                          Navigator.of(context).pop(pinController.text);
-                        } else {
-                          pinController.clear();
-                        }
-                      },
-                      child: Text(Literals.accept),
-                    ),
+                      onPressed: (state.pinVerified)
+                          ? () {
+                              focusNode.unfocus();
+                              Navigator.of(context).pop(pinController.text);
+                            }
+                          : null,
+                      child: Text(Literals.accept,
+                          style: (state.pinVerified)
+                              ? null
+                              : const TextStyle(
+                                  color: BlumenauColor.pinButtonGreyedColor)),
+                    )
                   ],
                 ),
               );

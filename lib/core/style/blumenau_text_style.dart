@@ -13,10 +13,12 @@ class BlumenauTextStyle {
       color: Colors.black26,
       fontSize: 18,
       decoration: TextDecoration.none,
+      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold);
   static const TextStyle pinText = TextStyle(
     fontSize: 22,
     color: Color.fromRGBO(30, 60, 87, 1),
+    fontFamily: 'Poppins',
   );
   static const TextStyle errorHeadlineText = TextStyle(
     backgroundColor: Colors.white,
@@ -32,5 +34,9 @@ class BlumenauTextStyle {
     decoration: TextDecoration.none,
   );
   static const TextStyle courtHeaderStyle = TextStyle(
-      color: Colors.white, fontSize: 14, decoration: TextDecoration.none);
+    color: Colors.blueAccent,
+    fontSize: 14,
+    decoration: TextDecoration.none,
+    fontFamily: 'Poppins',
+  );
 }

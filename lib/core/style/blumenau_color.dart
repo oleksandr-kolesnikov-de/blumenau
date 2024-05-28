@@ -10,4 +10,5 @@ class BlumenauColor {
   static const pinFillColor = Color.fromRGBO(243, 246, 249, 0);
   static const pinBorderColor = Color.fromRGBO(23, 171, 144, 0.4);
   static const pinErrorColor = Colors.redAccent;
+  static const pinButtonGreyedColor = Colors.grey;
 }

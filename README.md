@@ -1,6 +1,6 @@
 # blumenau
 
-Blumenau tennis club timetable
+HTC Blumenau tennis club timetable
 
 ## Getting Started
 
